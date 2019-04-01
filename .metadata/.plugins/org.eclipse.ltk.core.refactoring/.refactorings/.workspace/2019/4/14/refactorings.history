@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;ISST-19-CRIS&apos; to &apos;ISSTravelling - Grupo 9&apos;" description="Rename resource &apos;ISST-19-CRIS&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/ISST-19-CRIS" name="ISSTravelling - Grupo 9" stamp="1554141865512" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;ISSTravelling - Grupo 9&apos; to &apos;ISST-19-CRIS&apos;" description="Rename resource &apos;ISSTravelling - Grupo 9&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/ISSTravelling - Grupo 9" name="ISST-19-CRIS" stamp="1554142639667" updateReferences="true"/>
+</session>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="C:\Users\javia\Documents\ETSIT\Apuntes-Materiales\4º\Segundo Cuatrimestre\ISST\ISST-19-CRIS"/>
+		<item value="C:\Users\javia\Documents\ETSIT\Apuntes-Materiales\4º\Segundo Cuatrimestre\ISST\Proyecto Gestión de Viajes\Codigo"/>
+	</list>
+	<section name="ChooseWorkspaceDialogSettings">
+		<item key="DIALOG_X_ORIGIN" value="380"/>
+		<item key="DIALOG_Y_ORIGIN" value="165"/>
+	</section>
+	<section name="WORKBENCH_SETTINGS">
+		<list key="ENABLED_TRANSFERS">
+		</list>
+	</section>
+</section>
