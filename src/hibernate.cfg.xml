@@ -14,7 +14,8 @@
 		<property name="hibernate.enable_lazy_load_no_trans">true</property>
 		<property name="show_sql">true</property>
 		<property name="hbm2ddl.auto">update</property>
-		<mapping class="model.TFG" />
-		<mapping class="model.Professor" />
+		<mapping class="model.Empleado" />
+		<mapping class="model.Responsable" />
+		<mapping class="model.Viaje" />
 	</session-factory>
 </hibernate-configuration>

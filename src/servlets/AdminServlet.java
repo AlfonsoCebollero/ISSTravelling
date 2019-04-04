@@ -9,10 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.ProfessorDAO;
-import dao.ProfessorDAOImplementation;
-import dao.TFGDAO;
-import dao.TFGDAOImplementation;
+import dao.EmpleadoDAO;
+import dao.EmpleadoDAOImplementation;
+import dao.ResponsableDAO;
+import dao.ResponsableDAOImplementation;
+import dao.ViajeDAO;
+import dao.ViajeDAOImplementation;
 
 @WebServlet("/AdminServlet")
 public class AdminServlet extends HttpServlet {
@@ -20,10 +22,12 @@ public class AdminServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		ProfessorDAO pdao = ProfessorDAOImplementation.getInstance();
-		req.getSession().setAttribute( "professor_list", pdao.readAll() );
-		TFGDAO tdao = TFGDAOImplementation.getInstance();
-		req.getSession().setAttribute( "tfg_list", tdao.readAll() );
+		EmpleadoDAO edao = EmpleadoDAOImplementation.getInstance();
+		req.getSession().setAttribute( "empleado_list", edao.readAll() );
+		ResponsableDAO rdao = ResponsableDAOImplementation.getInstance();
+		req.getSession().setAttribute( "responsable_list", rdao.readAll() );
+		ViajeDAO vdao = ViajeDAOImplementation.getInstance();
+		req.getSession().setAttribute( "viaje_list", vdao.readAll() );
 		
 		getServletContext().getRequestDispatcher( "/AdminView.jsp" ).forward( req, resp );
 	}

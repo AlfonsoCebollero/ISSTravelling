@@ -12,16 +12,20 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 
-import dao.ProfessorDAO;
-import dao.ProfessorDAOImplementation;
+import dao.EmpleadoDAO;
+import dao.EmpleadoDAOImplementation;
+import dao.ResponsableDAO;
+import dao.ResponsableDAOImplementation;
+
 
 @WebServlet({ "/LoginServlet", "/" })
 public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ProfessorDAO pdao = ProfessorDAOImplementation.getInstance();
-		req.getSession().setAttribute( "professor_list", pdao.readAll() );
+		ResponsableDAO rdao = ResponsableDAOImplementation.getInstance();
+		req.getSession().setAttribute( "responsable_list", rdao.readAll() );
 		getServletContext().getRequestDispatcher( "/LoginView.jsp" ).forward( req, resp );
+		
 	}
 	
 	@Override
@@ -33,16 +37,29 @@ public class LoginServlet extends HttpServlet {
 			UsernamePasswordToken token = new UsernamePasswordToken( email, pass );
 			try {
 				currentUser.login( token );
-				if ( currentUser.hasRole( "admin" ) )
+				if ( currentUser.hasRole( "admin" ) ) {
+					System.out.println("admin");
 					resp.sendRedirect( req.getContextPath() + "/AdminServlet" );
-				else if ( currentUser.hasRole( "professor" ) )
-					resp.sendRedirect( req.getContextPath() + "/ProfessorServlet?email=" + currentUser.getPrincipal() );
-				else
-					resp.sendRedirect( req.getContextPath() + "/TFGServlet?email=" + currentUser.getPrincipal() );
+				}
+				else if ( currentUser.hasRole( "empleado" ) ) {
+					System.out.println("empleado");
+					resp.sendRedirect( req.getContextPath() + "/EmpleadoServlet?email=" + currentUser.getPrincipal() );
+				}
+				else if ( currentUser.hasRole( "responsable" ) ) {
+					System.out.println("responsable");
+					resp.sendRedirect( req.getContextPath() + "/ResponsableServlet?email=" + currentUser.getPrincipal() );
+				}
+				else {
+					System.out.println("no rol");
+					resp.sendRedirect( req.getContextPath() + "/LoginServlet" );
+				}
 			} catch ( Exception e ) {
+				System.out.println("excep");
+				System.out.println(e);
 				resp.sendRedirect( req.getContextPath() + "/LoginServlet" );
 			}
-		} else
+		} else {
 			resp.sendRedirect( req.getContextPath() + "/LoginServlet" );
+		}
 	}
 }
