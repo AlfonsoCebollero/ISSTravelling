@@ -11,5 +11,6 @@ public interface ResponsableDAO {
 	public void update(Responsable responsable);
 	public void delete(Responsable responsable);
 	public Collection<Responsable> readAll();
+	public boolean exists(String email);
 
 }

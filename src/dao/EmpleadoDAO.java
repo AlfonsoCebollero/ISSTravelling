@@ -11,5 +11,6 @@ public interface EmpleadoDAO {
 	public void update(Empleado empleado);
 	public void delete(Empleado empleado);
 	public Collection<Empleado> readAll();
+	public boolean exists(String email);
 
 }

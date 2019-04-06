@@ -28,12 +28,10 @@ public class CreateEmpleadoServlet extends HttpServlet {
 		String email = req.getParameter("email");
 		String telefono = req.getParameter("telefono");
 		String advisor2 = req.getParameter("advisor2");
-
 		ResponsableDAO rdao = ResponsableDAOImplementation.getInstance();
-		Responsable responsable = rdao.read(email);
-		if (responsable == null) {
-			responsable = rdao.read(advisor2);
-
+		boolean existe = rdao.exists(email);
+		if (!existe) {
+			Responsable responsable = rdao.read(advisor2);
 			Empleado empleado = new Empleado();
 			empleado.setName(name);
 			empleado.setEmail(email);

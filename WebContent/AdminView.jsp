@@ -22,16 +22,16 @@
 		<h3>Crear empleado nuevo</h3>
 		<form action="CreateEmpleadoServlet" method="post">
 			<p>
-				Nombre: <input type="text" name="name" />
+				Nombre: <input type="text" name="name" required/>
 			</p>
 			<p>
-				Email: <input type="text" name="email" />
+				Email: <input type="text" name="email" required/>
 			</p>
 			<p>
-				Telefono: <input type="text" name="telefono" />
+				Telefono: <input type="text" name="telefono" required/>
 			</p>
 			<p>
-				Password: <input type="password" name="password" />
+				Password: <input type="password" name="password" required/>
 			</p>
 			<p>
 				Responsable: <select name="advisor2">
@@ -49,13 +49,13 @@
 				<h3>Crear responsable nuevo</h3>
 		<form action="CreateResponsableServlet" method="post">
 			<p>
-				Nombre: <input type="text" name="name" />
+				Nombre: <input type="text" name="name" required/>
 			</p>
 			<p>
-				Email: <input type="text" name="email" />
+				Email: <input type="text" name="email" required/>
 			</p>
 			<p>
-				Password: <input type="password" name="password" />
+				Password: <input type="password" name="password" required/>
 			</p>
 			<p>
 				Que empleado es: <select name="advisor3">

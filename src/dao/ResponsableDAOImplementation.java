@@ -89,5 +89,18 @@ public class ResponsableDAOImplementation implements ResponsableDAO{
 			session.close();
 		}
 	}
+	
+	public boolean exists(String email) {
+		boolean exists = true;
+		Responsable responsable = read(email);
+		try {
+			if(responsable.getName() == null || responsable.getName() == "") {
+				exists = false;
+			}
+		} catch (Exception e) {
+			exists = false;
+		}
+		return exists;
+	}
 
 }

@@ -5,6 +5,7 @@ import java.util.Collection;
 import org.hibernate.Session;
 
 import model.Empleado;
+import model.Responsable;
 
 public class EmpleadoDAOImplementation implements EmpleadoDAO{
 
@@ -87,5 +88,18 @@ public class EmpleadoDAOImplementation implements EmpleadoDAO{
 		} finally {
 			session.close();
 		}
+	}
+	
+	public boolean exists(String email) {
+		boolean exists = true;
+		Empleado empleado = read(email);
+		try {
+			if(empleado.getName() == null || empleado.getName() == "") {
+				exists = false;
+			}
+		} catch (Exception e) {
+			exists = false;
+		}
+		return exists;
 	}
 }

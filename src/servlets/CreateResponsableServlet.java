@@ -29,9 +29,9 @@ public class CreateResponsableServlet extends HttpServlet {
 		String advisor3 = req.getParameter( "advisor3" );
 
 		EmpleadoDAO edao = EmpleadoDAOImplementation.getInstance();
-		Empleado empleado = edao.read(email);
-		if (empleado == null) {
-			empleado = edao.read(advisor3);
+		boolean exists = edao.exists(email);
+		if (!exists) {
+			Empleado empleado = edao.read(advisor3);
 			
 			Responsable responsable = new Responsable();
 			responsable.setName(name);
