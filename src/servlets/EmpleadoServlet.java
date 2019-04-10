@@ -24,7 +24,7 @@ public class EmpleadoServlet extends HttpServlet {
 	    	String email = req.getParameter( "email" );
 	    	EmpleadoDAO edao = EmpleadoDAOImplementation.getInstance();
 			Empleado e = edao.read(email);
-			req.getSession().setAttribute( "empleado", edao.read( email ));
+			req.getSession().setAttribute( "empleado", e);
 			req.getSession().setAttribute( "advisedViajes", e.getAdvisedViajes());
 			getServletContext().getRequestDispatcher( "/EmpleadoView.jsp" ).forward( req, resp );	
 		}

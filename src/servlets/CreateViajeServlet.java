@@ -26,7 +26,7 @@ public class CreateViajeServlet extends HttpServlet {
 		String ida = req.getParameter( "ida" );
 		String vuelta = req.getParameter( "vuelta" );
 		String presupuesto = req.getParameter( "presupuesto" );
-		String emailAdvisor = req.getParameter( "advisor" );
+		String emailAdvisor = req.getParameter( "email" );
 				
 		Viaje viaje = new Viaje();
 		viaje.setDestino( destino );
@@ -43,7 +43,7 @@ public class CreateViajeServlet extends HttpServlet {
 		ViajeDAO vdao = ViajeDAOImplementation.getInstance();
 		vdao.create( viaje );
 		
-		getServletContext().getRequestDispatcher( "/EmpleadoView.jsp" ).forward( req, resp );
+		resp.sendRedirect(req.getContextPath() + "/EmpleadoServlet?email="+emailAdvisor);
 		
 	}
 }

@@ -11,7 +11,7 @@
 	</head>
 	<body>
 	<shiro:user>
-    Welcome back <shiro:principal />! Cl ick <a href="LogoutServlet">here</a> to logout.
+    Welcome back <shiro:principal />! Click <a href="LogoutServlet">here</a> to logout.
 	</shiro:user>
 		<p>
 			Email empleado: ${ empleado.email }
@@ -20,7 +20,7 @@
 			Nombre del empleado: ${ empleado.name }
 		</p>
 		<h3>Crear solicitud de viaje</h3>
-		<form action="SolicitarViajeServlet" method="post">
+		<form action="CreateViajeServlet" method="post">
 			<p>
 				Email: <input type="text" name="email" value=${ empleado.email } />
 			</p>
@@ -34,7 +34,7 @@
 				Fecha de vuelta: <input type="text" name="vuelta" />
 			</p>
 			<p>
-				Presupuesto: <input type="number" name="presupuesto" />
+				Presupuesto: <input type="String" name="presupuesto" />
 			</p>
 			<p>
 				<button type="submit">Solicitar Viaje</button>
@@ -59,7 +59,7 @@
 					<td>${viajei.fecha_inicio }</td>
 					<td>${viajei.fecha_fin }</td>
 					<td>${viajei.presupuesto }</td>
-					<td><c:if test="${viajei.status == 1}">Solcitado</c:if>
+					<td><c:if test="${viajei.status == 1}">Solicitado</c:if>
 						<c:if test="${viajei.status == 2}">Aprobado</c:if>
 						<c:if test="${viajei.status == 3}">En curso</c:if>
 						<c:if test="${viajei.status == 4}">Finalizado</c:if>
