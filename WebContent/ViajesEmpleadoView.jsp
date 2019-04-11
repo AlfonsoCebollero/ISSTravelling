@@ -27,6 +27,7 @@
 			<th>Estado del viaje</th>
 			<th>Acción requerida</th>
 
+
 		</tr>
 		<c:forEach items="${viajes_list}" var="viajei">
 			<tr>
