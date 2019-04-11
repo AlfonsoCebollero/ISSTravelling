@@ -14,16 +14,10 @@
     Welcome back <shiro:principal />! Click <a href="LogoutServlet">here</a> to logout.
 	</shiro:user>
 		<p>
-			Email empleado: ${ empleado.email }
-		</p>
-		<p>
-			Nombre del empleado: ${ empleado.name }
+			Tu Email: ${ empleado.email } <br>Tu nombre: ${ empleado.name }
 		</p>
 		<h3>Crear solicitud de viaje</h3>
 		<form action="CreateViajeServlet" method="post">
-			<p>
-				Email: <input type="text" name="email" value=${ empleado.email } />
-			</p>
 			<p>
 				Destino: <input type="text" name="destino" />
 			</p>
@@ -34,7 +28,7 @@
 				Fecha de vuelta: <input type="text" name="vuelta" />
 			</p>
 			<p>
-				Presupuesto: <input type="String" name="presupuesto" />
+				Presupuesto: <input type="Text" name="presupuesto" />
 			</p>
 			<p>
 				<button type="submit">Solicitar Viaje</button>
@@ -52,7 +46,7 @@
 				<th>Estado del viaje</th>
 				
 			</tr>
-			<c:forEach items="${advisedViajes}" var="viajei">
+			<c:forEach items="${vieajes_list}" var="viajei">
 				<tr>
 					<td>${viajei.id }</td>
 					<td>${viajei.destino }</td>

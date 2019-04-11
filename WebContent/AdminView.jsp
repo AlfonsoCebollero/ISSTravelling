@@ -58,7 +58,7 @@
 				Password: <input type="password" name="password" required/>
 			</p>
 			<p>
-				Que empleado es: <select name="advisor3">
+				Que empleado es: <select name="advisor3" required>
 					<option value="" disabled selected>Elija un empleado</option>
 					<c:forEach items="${empleado_list}" var="empleadoi">
 						<option value="${ empleadoi.email}">

@@ -23,9 +23,9 @@ public class ResponsableServlet extends HttpServlet {
 		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	    	String email = req.getParameter( "email" );
 	    	ResponsableDAO rdao = ResponsableDAOImplementation.getInstance();
-			Responsable r = rdao.read(email);
-			
-			req.getSession().setAttribute( "empleado_list", r.getAdvisedEmpleados());
+			Responsable responsable = rdao.read(email);
+			req.getSession().setAttribute( "responsable", responsable);
+			req.getSession().setAttribute( "empleado_list", responsable.getAdvisedEmpleados());
 			
 			getServletContext().getRequestDispatcher( "/ResponsableView.jsp" ).forward( req, resp );	
 		}

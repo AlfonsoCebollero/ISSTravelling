@@ -16,6 +16,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
+
 @WebServlet("/CreateViajeServlet")
 public class CreateViajeServlet extends HttpServlet {
 	
@@ -26,7 +29,8 @@ public class CreateViajeServlet extends HttpServlet {
 		String ida = req.getParameter( "ida" );
 		String vuelta = req.getParameter( "vuelta" );
 		String presupuesto = req.getParameter( "presupuesto" );
-		String emailAdvisor = req.getParameter( "email" );
+		Subject currentUser = SecurityUtils.getSubject();
+		String emailAdvisor = (String) currentUser.getPrincipal();
 				
 		Viaje viaje = new Viaje();
 		viaje.setDestino( destino );
@@ -35,9 +39,8 @@ public class CreateViajeServlet extends HttpServlet {
 		viaje.setPresupuesto( Integer.parseInt(presupuesto) );
 		viaje.setStatus( 1 );
 		
-		Empleado advisor = new Empleado();
 		EmpleadoDAO edao = EmpleadoDAOImplementation.getInstance();
-		advisor = edao.read(emailAdvisor);
+		Empleado advisor = edao.read(emailAdvisor);
 		viaje.setAdvisor(advisor);
 		
 		ViajeDAO vdao = ViajeDAOImplementation.getInstance();

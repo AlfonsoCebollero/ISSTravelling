@@ -13,7 +13,9 @@
 	<shiro:user>
     Welcome back <shiro:principal />! Click <a href="LogoutServlet">here</a> to logout.
 	</shiro:user>
-		
+		<p>
+			Tu Email: ${ responsable.email } <br>Tu nombre: ${ responsable.name }
+		</p>
 		<h3>Listado de empleados a su cargo</h3>
 		<table border="1">
 			<tr>
@@ -26,7 +28,7 @@
 				<tr>
 					<td>${empleadoi.name }</td>
 					<td>${empleadoi.email }</td>
-					<td><a href="/ViajesEmpleadoServlet?email="+${empleadoi.email } > ${fn:length(empleadoi.advisedViajes) }</a></td>
+					<td><a href="/ISST2019/ViajesEmpleadoServlet?email=${empleadoi.email }" > ${fn:length(empleadoi.advisedViajes) }</a></td>
 				</tr>
 			</c:forEach>
 		</table>

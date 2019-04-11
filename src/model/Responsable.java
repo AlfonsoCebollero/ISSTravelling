@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Entity;
@@ -51,7 +52,18 @@ public class Responsable  implements Serializable{
 	}
 
 	public Collection<Empleado> getAdvisedEmpleados() {
-		return advisedEmpleados;
+		Collection<Empleado> out = new ArrayList<Empleado>();
+		for(Empleado empleado : advisedEmpleados) {
+			boolean esta = false;
+			for(Empleado empleado2 : out) {
+				if(empleado2.getEmail()==empleado.getEmail()) {
+					esta=true;
+				}
+			}if(!esta) {
+				out.add(empleado);
+			}
+		}
+		return out;
 	}
 
 	public void setAdvisedEmpleados(Collection<Empleado> advisedEmpleados) {
