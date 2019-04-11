@@ -24,9 +24,11 @@ public class Form2ResponsableServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id = req.getParameter( "id" );
 		String email = req.getParameter( "advisoremail" );
+		String presupuesto = req.getParameter( "presupuesto" );
 		ViajeDAO vdao = ViajeDAOImplementation.getInstance();
 		Viaje viaje = vdao.read(Integer.parseInt(id));
 		
+		viaje.setPresupuesto(Integer.parseInt(presupuesto));
 		viaje.setStatus(2);
 		vdao.update(viaje);
 		

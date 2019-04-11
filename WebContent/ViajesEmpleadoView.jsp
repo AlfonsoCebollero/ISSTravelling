@@ -23,8 +23,8 @@
 			<th>Destino</th>
 			<th>Fecha de salida</th>
 			<th>Fecha de regreso</th>
-			<th>Presupuesto</th>
 			<th>Estado del viaje</th>
+			<th>Presupuesto</th>
 			<th>Acción requerida</th>
 
 
@@ -35,19 +35,21 @@
 				<td>${viajei.destino }</td>
 				<td>${viajei.fecha_inicio }</td>
 				<td>${viajei.fecha_fin }</td>
-				<td>${viajei.presupuesto }</td>
 				<td><c:if test="${viajei.status == 1}">Solicitado</c:if> <c:if
 						test="${viajei.status == 2}">Aprobado</c:if> <c:if
 						test="${viajei.status == 3}">En curso</c:if> <c:if
 						test="${viajei.status == 4}">Finalizado</c:if></td>
-				<td><c:if test="${viajei.status == 1}">
-						<form action="Form2ResponsableServlet" method="post">
-							<input type="hidden" name="id" value="${viajei.id}" /> <input
-								type="hidden" name="advisoremail"
-								value="${viajei.advisor.email}" />
-							<button type="submit">Aceptar viaje</button>
-						</form>
-					</c:if></td>
+				<c:if test="${viajei.status == 1}">
+					<form action="Form2ResponsableServlet" method="post">
+					<td><input type="number" name="presupuesto" value="${viajei.presupuesto}" /></td>
+					<td><input type="hidden" name="id" value="${viajei.id}" /> <input
+						type="hidden" name="advisoremail" value="${viajei.advisor.email}" />
+						<button type="submit">Aceptar viaje</button></td>
+					</form>
+				</c:if>
+				<c:if test="${viajei.status != 1}">
+					<td>${viajei.presupuesto}</td>
+				</c:if>
 			</tr>
 		</c:forEach>
 	</table>

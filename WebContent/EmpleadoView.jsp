@@ -22,13 +22,13 @@
 				Destino: <input type="text" name="destino" />
 			</p>
 			<p>
-				Fecha de ida: <input type="text" name="ida" />
+				Fecha de ida: <input type="date" name="ida" />
 			</p>
 			<p>
-				Fecha de vuelta: <input type="text" name="vuelta" />
+				Fecha de vuelta: <input type="date" name="vuelta" />
 			</p>
 			<p>
-				Presupuesto: <input type="Text" name="presupuesto" />
+				Propón presupuesto: <input type="number" name="presupuesto" />
 			</p>
 			<p>
 				<button type="submit">Solicitar Viaje</button>

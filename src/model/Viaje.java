@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.Collection;
 
 import javax.persistence.Entity;
@@ -21,8 +22,8 @@ public class Viaje implements Serializable{
 	private int id;
 	
 	private String destino;
-	private String fecha_inicio;
-	private String fecha_fin;
+	private Date fecha_inicio;
+	private Date fecha_fin;
 	private int presupuesto;
 	private int status;
 	
@@ -50,22 +51,22 @@ public class Viaje implements Serializable{
 	}
 
 
-	public String getFecha_inicio() {
+	public Date getFecha_inicio() {
 		return fecha_inicio;
 	}
 
 
-	public void setFecha_inicio(String fecha_inicio) {
+	public void setFecha_inicio(Date fecha_inicio) {
 		this.fecha_inicio = fecha_inicio;
 	}
 
 
-	public String getFecha_fin() {
+	public Date getFecha_fin() {
 		return fecha_fin;
 	}
 
 
-	public void setFecha_fin(String fecha_fin) {
+	public void setFecha_fin(Date fecha_fin) {
 		this.fecha_fin = fecha_fin;
 	}
 
