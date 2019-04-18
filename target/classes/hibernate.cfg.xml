@@ -17,5 +17,6 @@
 		<mapping class="model.Empleado" />
 		<mapping class="model.Responsable" />
 		<mapping class="model.Viaje" />
+		<mapping class="model.Factura" />
 	</session-factory>
 </hibernate-configuration>

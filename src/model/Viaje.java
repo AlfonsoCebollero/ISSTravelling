@@ -30,7 +30,20 @@ public class Viaje implements Serializable{
 	@ManyToOne
 	private Empleado advisor;
 	
+	@OneToMany(mappedBy = "advisor4", fetch = FetchType.EAGER)
+	private Collection<Factura> advisedFacturas;
 	
+	
+	public Collection<Factura> getAdvisedFacturas() {
+		return advisedFacturas;
+	}
+
+
+	public void setAdvisedFacturas(Collection<Factura> advisedFacturas) {
+		this.advisedFacturas = advisedFacturas;
+	}
+
+
 	public int getId() {
 		return id;
 	}
