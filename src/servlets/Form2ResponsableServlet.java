@@ -25,11 +25,12 @@ public class Form2ResponsableServlet extends HttpServlet {
 		String id = req.getParameter( "id" );
 		String email = req.getParameter( "advisoremail" );
 		String presupuesto = req.getParameter( "presupuesto" );
+		String action = req.getParameter( "action" );
 		ViajeDAO vdao = ViajeDAOImplementation.getInstance();
 		Viaje viaje = vdao.read(Integer.parseInt(id));
 		
 		viaje.setPresupuesto(Integer.parseInt(presupuesto));
-		viaje.setStatus(2);
+		viaje.setStatus(Integer.parseInt(action));
 		vdao.update(viaje);
 		
 		resp.sendRedirect( req.getContextPath() + "/ViajesEmpleadoServlet?email=" + email  );

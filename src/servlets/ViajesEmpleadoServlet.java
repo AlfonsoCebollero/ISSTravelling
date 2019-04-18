@@ -27,6 +27,7 @@ public class ViajesEmpleadoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String email = req.getParameter("email");
 		EmpleadoDAO edao = EmpleadoDAOImplementation.getInstance();
+		req.getSession().setAttribute("empleadoName", edao.read(email).getName());
 		req.getSession().setAttribute("viajes_list", edao.read(email).getAdvisedViajes());
 
 		Subject currentUser = SecurityUtils.getSubject();
