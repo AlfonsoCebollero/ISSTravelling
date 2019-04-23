@@ -16,20 +16,26 @@
 </head>
 <body>
 	<div class="container">
-	<br>
+		<br>
 		<shiro:guest>
 			<div class="jumbotron text-center">
 				<h1>Login</h1>
 			</div>
 			<div class="row text-center well">
 				<form action="LoginServlet" method="post" class="form-inline">
-					<div class="form-group">
-						<label>Email</label> <input class="form-control" type="text"
-							name="email" placeholder="Email" />
+					<div class="form-group input-group">
+						<div class="input-group-addon">
+							<b>Email</b>
+						</div>
+						<input type="text" class="form-control" name="email"
+							placeholder="Email" required>
 					</div>
-					<div class="form-group">
-						<label>Password</label> <input class="form-control"
-							type="password" name="password" placeholder="Password" />
+					<div class="form-group input-group">
+						<div class="input-group-addon">
+							<b>Password</b>
+						</div>
+						<input type="password" class="form-control" name="password"
+							placeholder="password" required>
 					</div>
 					<button class="btn btn-primary" type="submit">Login</button>
 				</form>

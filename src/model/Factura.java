@@ -16,7 +16,7 @@ public class Factura implements Serializable{
 	private int id;
 	
 	private String descripcion;
-	private int cargo;
+	private Float cargo;
 	private int estado;
 	
 	@Lob
@@ -41,11 +41,11 @@ public class Factura implements Serializable{
 		this.descripcion = descripcion;
 	}
 
-	public int getCargo() {
+	public Float getCargo() {
 		return cargo;
 	}
 
-	public void setCargo(int cargo) {
+	public void setCargo(Float cargo) {
 		this.cargo = cargo;
 	}
 

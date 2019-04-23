@@ -29,71 +29,83 @@
 				<div class="text-center">
 					<h3 class="text-center">Crear empleado nuevo</h3>
 					<form action="CreateEmpleadoServlet" method="post">
-						<p>
-						<div class="row center-block">
-							<div class="col-md-1 col-md-offset-3">
-								<label>Nombre</label>
+						<div class="form-group">
+							<p>
+							<div class="row center-block">
+								<div class="col-md-6 col-md-offset-3">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<b>Nombre</b>
+										</div>
+										<input class="form-control" type="text" name="name"
+											placeholder="Nombre del empleado" required />
+									</div>
+								</div>
 							</div>
-							<div class="col-md-4">
-								<input class="form-control" type="text" name="name"
-									placeholder="Nombre del empleado" required />
+							</p>
+							<p>
+							<div class="row center-block">
+								<div class="col-md-6 col-md-offset-3">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<b>Email</b>
+										</div>
+										<input class="form-control" type="text" name="email"
+											placeholder="Email el empleado" required />
+									</div>
+								</div>
 							</div>
+							</p>
+							<p>
+							<div class="row center-block">
+								<div class="col-md-6 col-md-offset-3">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<b>Telefono</b>
+										</div>
+										<input class="form-control" type="text" name="telefono"
+											placeholder="Teléfono del empleado" required />
+									</div>
+								</div>
+							</div>
+							</p>
+							<p>
+							<div class="row center-block">
+								<div class="col-md-6 col-md-offset-3">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<b>Password</b>
+										</div>
+										<input class="form-control" type="password" name="password"
+											placeholder="Contraseña del empleado" required />
+									</div>
+								</div>
+							</div>
+							</p>
+							<p>
+							<div class="row center-block">
+								<div class="col-md-6 col-md-offset-3">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<b>Responsable a su cargo</b>
+										</div>
+										<select class="form-control" name="advisor2">
+											<option value="" disabled selected>Elija un
+												responsable</option>
+											<c:forEach items="${responsable_list}" var="responsablei">
+												<option value="${ responsablei.email}">
+													${responsablei.name}-${responsablei.email}</option>
+											</c:forEach>
+										</select>
+									</div>
+								</div>
+							</div>
+							</p>
+							<p>
+								<button class="btn btn-success text-center" type="submit">Crear
+									Empleado</button>
+							</p>
 						</div>
-						</p>
-						<p>
-						<div class="row center-block">
-							<div class="col-md-1 col-md-offset-3">
-								<label>Email</label>
-							</div>
-							<div class="col-md-4">
-								<input class="form-control" type="text" name="email"
-									placeholder="Email el empleado" required />
-							</div>
-						</div>
-						</p>
-						<p>
-						<div class="row center-block">
-							<div class="col-md-1 col-md-offset-3">
-								<label>Teléfono</label>
-							</div>
-							<div class="col-md-4">
-								<input class="form-control" type="text" name="telefono"
-									placeholder="Teléfono del empleado" required />
-							</div>
-						</div>
-						</p>
-						<p>
-						<div class="row center-block">
-							<div class="col-md-1 col-md-offset-3">
-								<label>Password</label>
-							</div>
-							<div class="col-md-4">
-								<input class="form-control" type="password" name="password"
-									placeholder="Contraseña del empleado" required />
-							</div>
-						</div>
-						</p>
-						<p>
-						<div class="row center-block">
-							<div class="col-md-1 col-md-offset-3">
-								<label>Responsable</label>
-							</div>
-							<div class="col-md-4">
-								<select class="form-control" name="advisor2">
-									<option value="" disabled selected>Elija un
-										responsable</option>
-									<c:forEach items="${responsable_list}" var="responsablei">
-										<option value="${ responsablei.email}">
-											${responsablei.name}-${responsablei.email}</option>
-									</c:forEach>
-								</select>
-							</div>
-						</div>
-						</p>
-						<p>
-							<button class="btn btn-success text-center" type="submit">Crear
-								Empleado</button>
-						</p>
 					</form>
 				</div>
 				<hr>
@@ -102,52 +114,61 @@
 					<form action="CreateResponsableServlet" method="post">
 						<p>
 						<div class="row center-block">
-							<div class="col-md-1 col-md-offset-3">
-								<label>Nombre</label>
-							</div>
-							<div class="col-md-4">
-								<input class="form-control" type="text" name="name"
-									placeholder="Nombre del responsable" required />
-							</div>
-						</div>
-						</p>
-						<p>
-						<div class="row center-block">
-							<div class="col-md-1 col-md-offset-3">
-								<label>Email</label>
-							</div>
-							<div class="col-md-4">
-								<input class="form-control" type="text" name="email"
-									placeholder="Email del responsable" required />
+							<div class="col-md-6 col-md-offset-3">
+								<div class="input-group">
+									<div class="input-group-addon">
+										<b>Nombre</b>
+									</div>
+									<input class="form-control" type="text" name="name"
+										placeholder="Nombre del responsable" required />
+								</div>
 							</div>
 						</div>
 						</p>
 						<p>
 						<div class="row center-block">
-							<div class="col-md-1 col-md-offset-3">
-								<label>Password</label>
-							</div>
-							<div class="col-md-4">
-								<input class="form-control" type="password" name="password"
-									placeholder="Contraseña del responsable" required />
+							<div class="col-md-6 col-md-offset-3">
+								<div class="input-group">
+									<div class="input-group-addon">
+										<b>Email</b>
+									</div>
+									<input class="form-control" type="text" name="email"
+										placeholder="Email del responsable" required />
+								</div>
 							</div>
 						</div>
 						</p>
 						<p>
 						<div class="row center-block">
-							<div class="col-md-1 col-md-offset-3">
-								<label>Que empleado es</label>
-							</div>
-							<div class="col-md-4">
-								<select class="form-control" name="advisor3" required>
-									<option value="" disabled selected>Elija un empleado</option>
-									<c:forEach items="${empleado_list}" var="empleadoi">
-										<option value="${ empleadoi.email}">
-											${empleadoi.name}-${empleadoi.email}</option>
-									</c:forEach>
-								</select>
+							<div class="col-md-6 col-md-offset-3">
+								<div class="input-group">
+									<div class="input-group-addon">
+										<b>Password</b>
+									</div>
+									<input class="form-control" type="password" name="password"
+										placeholder="Contraseña del responsable" required />
+								</div>
 							</div>
 						</div>
+						</p>
+						<p>
+						<div class="row center-block">
+							<div class="col-md-6 col-md-offset-3">
+								<div class="input-group">
+									<div class="input-group-addon">
+										<b>Empleado que es</b>
+									</div>
+									<select class="form-control" name="advisor3" required>
+										<option value="" disabled selected>Elija un empleado</option>
+										<c:forEach items="${empleado_list}" var="empleadoi">
+											<option value="${ empleadoi.email}">
+												${empleadoi.name}-${empleadoi.email}</option>
+										</c:forEach>
+									</select>
+								</div>
+							</div>
+						</div>
+						</p>
 						<p>
 							<button class="btn btn-success" type="submit">Crear
 								Responsable</button>

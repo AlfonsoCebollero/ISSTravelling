@@ -33,7 +33,7 @@ public class Form2ResponsableServlet extends HttpServlet {
 		viaje.setStatus(Integer.parseInt(action));
 		vdao.update(viaje);
 		
-		resp.sendRedirect( req.getContextPath() + "/ViajesEmpleadoServlet?email=" + email  );
+		resp.sendRedirect( req.getContextPath() + "/ViajesEmpleadoResponsableServlet?email=" + email  );
 	}
 
 }

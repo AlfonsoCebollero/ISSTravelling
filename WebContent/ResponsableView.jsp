@@ -43,7 +43,7 @@
 					</tr>
 					<c:forEach items="${empleado_list}" var="empleadoi">
 						<tr class=" warning clickable-row"
-							data-href="/ISST2019/ViajesEmpleadoServlet?email=${empleadoi.email }">
+							data-href="/ISST2019/ViajesEmpleadoResponsableServlet?email=${empleadoi.email }">
 							<td>${empleadoi.name }</td>
 							<td>${empleadoi.email }</td>
 							<td>${fn:length(empleadoi.advisedViajes) }</td>
