@@ -22,11 +22,23 @@ public class Empleado  implements Serializable{
 	private Collection<Viaje> advisedViajes;
 	
 	@ManyToOne
-	private Responsable advisor2;
+	private Empleado advisor2;
 	
+	@OneToMany(mappedBy = "advisor2", fetch = FetchType.LAZY)
+	private Collection<Empleado> advisedEmpleados;
 
 	public String getEmail() {
 		return email;
+	}
+
+
+	public Collection<Empleado> getAdvisedEmpleados() {
+		return advisedEmpleados;
+	}
+
+
+	public void setAdvisedEmpleados(Collection<Empleado> advisedEmpleados) {
+		this.advisedEmpleados = advisedEmpleados;
 	}
 
 
@@ -75,12 +87,12 @@ public class Empleado  implements Serializable{
 	}
 
 
-	public Responsable getAdvisor2() {
+	public Empleado getAdvisor2() {
 		return advisor2;
 	}
 
 
-	public void setAdvisor2(Responsable advisor2) {
+	public void setAdvisor2(Empleado advisor2) {
 		this.advisor2 = advisor2;
 	}
 

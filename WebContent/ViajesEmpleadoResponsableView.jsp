@@ -18,10 +18,10 @@
 		<shiro:user>
     Welcome back <shiro:principal />! Click <a href="LogoutServlet">here</a> to logout.
 		</shiro:user>
-		<shiro:lacksRole name="responsable">
+		<shiro:lacksRole name="empleado">
 	No tienes permiso para ver el contenido de esta página 
 		</shiro:lacksRole>
-		<shiro:hasRole name="responsable">
+		<shiro:hasRole name="empleado">
 			<div class="jumbotron text-center">
 				<h1>Resposable</h1>
 				<p>

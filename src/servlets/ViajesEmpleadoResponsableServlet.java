@@ -13,9 +13,7 @@ import org.apache.shiro.subject.Subject;
 
 import dao.EmpleadoDAO;
 import dao.EmpleadoDAOImplementation;
-import dao.ResponsableDAO;
-import dao.ResponsableDAOImplementation;
-import model.Responsable;
+import model.Empleado;
 
 
 /**
@@ -32,8 +30,7 @@ public class ViajesEmpleadoResponsableServlet extends HttpServlet {
 
 		Subject currentUser = SecurityUtils.getSubject();
 		String emailResponsable = (String) currentUser.getPrincipal();
-    	ResponsableDAO rdao = ResponsableDAOImplementation.getInstance();
-		Responsable responsable = rdao.read(emailResponsable);
+		Empleado responsable = edao.read(emailResponsable);
 		req.getSession().setAttribute( "responsable", responsable);
 		
 		

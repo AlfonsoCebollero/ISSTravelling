@@ -5,7 +5,6 @@ import java.util.Collection;
 import org.hibernate.Session;
 
 import model.Empleado;
-import model.Responsable;
 
 public class EmpleadoDAOImplementation implements EmpleadoDAO{
 

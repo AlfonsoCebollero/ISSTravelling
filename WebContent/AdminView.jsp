@@ -63,7 +63,7 @@
 										<div class="input-group-addon">
 											<b>Telefono</b>
 										</div>
-										<input class="form-control" type="text" name="telefono"
+										<input class="form-control" type="tel" name="telefono"
 											placeholder="Teléfono del empleado" required />
 									</div>
 								</div>
@@ -92,7 +92,7 @@
 										<select class="form-control" name="advisor2">
 											<option value="" disabled selected>Elija un
 												responsable</option>
-											<c:forEach items="${responsable_list}" var="responsablei">
+											<c:forEach items="${empleado_list}" var="responsablei">
 												<option value="${ responsablei.email}">
 													${responsablei.name}-${responsablei.email}</option>
 											</c:forEach>
@@ -109,102 +109,54 @@
 					</form>
 				</div>
 				<hr>
-				<div class="text-center">
-					<h3 class="text-center">Crear responsable nuevo</h3>
-					<form action="CreateResponsableServlet" method="post">
-						<p>
-						<div class="row center-block">
-							<div class="col-md-6 col-md-offset-3">
-								<div class="input-group">
-									<div class="input-group-addon">
-										<b>Nombre</b>
-									</div>
-									<input class="form-control" type="text" name="name"
-										placeholder="Nombre del responsable" required />
-								</div>
-							</div>
-						</div>
-						</p>
-						<p>
-						<div class="row center-block">
-							<div class="col-md-6 col-md-offset-3">
-								<div class="input-group">
-									<div class="input-group-addon">
-										<b>Email</b>
-									</div>
-									<input class="form-control" type="text" name="email"
-										placeholder="Email del responsable" required />
-								</div>
-							</div>
-						</div>
-						</p>
-						<p>
-						<div class="row center-block">
-							<div class="col-md-6 col-md-offset-3">
-								<div class="input-group">
-									<div class="input-group-addon">
-										<b>Password</b>
-									</div>
-									<input class="form-control" type="password" name="password"
-										placeholder="Contraseña del responsable" required />
-								</div>
-							</div>
-						</div>
-						</p>
-						<p>
-						<div class="row center-block">
-							<div class="col-md-6 col-md-offset-3">
-								<div class="input-group">
-									<div class="input-group-addon">
-										<b>Empleado que es</b>
-									</div>
-									<select class="form-control" name="advisor3" required>
-										<option value="" disabled selected>Elija un empleado</option>
-										<c:forEach items="${empleado_list}" var="empleadoi">
-											<option value="${ empleadoi.email}">
-												${empleadoi.name}-${empleadoi.email}</option>
-										</c:forEach>
-									</select>
-								</div>
-							</div>
-						</div>
-						</p>
-						<p>
-							<button class="btn btn-success" type="submit">Crear
-								Responsable</button>
-						</p>
-					</form>
-				</div>
-				<hr>
+
 
 				<h3 class="text-center">Listado de Empleados</h3>
 				<table class="table table-striped table-bordered">
 					<tr>
 						<th>Nombre</th>
 						<th>Email</th>
+						<th>Teléfono</th>
 						<th>Viajes</th>
+						<th>Responsable</th>
 					</tr>
 					<c:forEach items="${empleado_list}" var="emp">
 						<tr>
 							<td>${emp.name }</td>
 							<td>${emp.email }</td>
+							<td>${emp.telefono }</td>
 							<td>${fn:length(emp.advisedViajes) }</td>
+							<td>${emp.advisor2.email }</td>
 						</tr>
 					</c:forEach>
 				</table>
 				<hr>
-				<h3 class="text-center">Listado de Responsables</h3>
-				<table class="table table-striped table-bordered">
+				<h3 class="text-center">Listado de Viajes</h3>
+				<table class="table table-hover table-bordered">
 					<tr>
-						<th>Nombre</th>
-						<th>Email</th>
-						<th>Empleados</th>
+						<th>Id</th>
+						<th>Destino</th>
+						<th>Fecha de salida</th>
+						<th>Fecha de regreso</th>
+						<th>Presupuesto</th>
+						<th>Estado del viaje</th>
+
 					</tr>
-					<c:forEach items="${responsable_list}" var="resp">
-						<tr>
-							<td>${resp.name }</td>
-							<td>${resp.email }</td>
-							<td>${fn:length(resp.advisedEmpleados) }</td>
+					<c:forEach items="${viajes_list}" var="viajei">
+						<tr
+							class="<c:if test="${viajei.status == 2 || viajei.status == 3}">success </c:if>
+						<c:if test="${viajei.status == 5 }">danger </c:if> "
+							data-href="/ISST2019/EmpleadoViajeServlet?id=${viajei.id }">
+							<td>${viajei.id }</td>
+							<td>${viajei.destino }</td>
+							<td>${viajei.fecha_inicio }</td>
+							<td>${viajei.fecha_fin }</td>
+							<td>${viajei.presupuesto }</td>
+							<td><c:if test="${viajei.status == 1}">Solicitado</c:if> <c:if
+									test="${viajei.status == 2}">Aprobado</c:if> <c:if
+									test="${viajei.status == 3}">En curso</c:if> <c:if
+									test="${viajei.status == 4}">Finalizado</c:if> <c:if
+									test="${viajei.status == 5}">Rechazado</c:if></td>
 						</tr>
 					</c:forEach>
 				</table>

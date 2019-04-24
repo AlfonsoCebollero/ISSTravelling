@@ -45,7 +45,7 @@
 								de vuelta <b>${viaje.fecha_fin}</b></li>
 							<li>La moneda en <b>${country}</b> es <b>${ currency }</b>
 								con cambio al EUR de <b>${change}</b></li>
-							<li>El tiempo actual en <b>${country}</b> es <b>${ weather }</b></li>
+							<li>El tiempo actual en <b>${viaje.destino}</b> es <b>${ weather }</b></li>
 						</ul>
 					</div>
 				</div>
