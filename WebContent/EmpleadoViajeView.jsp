@@ -15,19 +15,39 @@
 </head>
 <body>
 	<div class="container">
-		<shiro:user>
-    Welcome back <shiro:principal />! Click <a href="LogoutServlet">here</a> to logout.
-		</shiro:user>
+		<br>
 		<shiro:lacksRole name="empleado">
 	No tienes permiso para ver el contenido de esta página
 	</shiro:lacksRole>
 		<shiro:hasRole name="empleado">
-			<div class="jumbotron text-center">
-				<h1>Empleado</h1>
-				<p>
-					Tu Email: ${ empleado.email } <br>Tu nombre: ${ empleado.name }
-				</p>
+			<div class="row">
+				<nav class="navbar navbar-default">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle"
+								data-toggle="collapse" data-target="#myNavbar">
+								<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+									class="icon-bar"></span>
+							</button>
+							<b class="navbar-brand">Empleado</b>
+						</div>
+						<div class="collapse navbar-collapse" id="myNavbar">
+							<ul class="nav navbar-nav">
+								<li><a href="/ISST2019/HomeEmpleadoServlet?email=b">Home</a></li>
+								<li class="active"><a
+									href="/ISST2019/EmpleadoServlet?email=b">Tus Viajes</a></li>
+								<li><a href="/ISST2019/ResponsableServlet?email=b">Tus
+										Empleados</a></li>
+							</ul>
+							<ul class="nav navbar-nav navbar-right">
+								<li><a href="LogoutServlet"><span
+										class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+							</ul>
+						</div>
+					</div>
+				</nav>
 			</div>
+			<br>
 			<div class="row well">
 				<div class="row">
 					<h3 class="text-center">Descripción de viaje con id ${ viaje.id }</h3>
@@ -63,8 +83,8 @@
 											<div class="input-group-addon">
 												<b>Cargo</b>
 											</div>
-											<input type="number" step="0.01" class="form-control" name="cargo"
-												placeholder="Cantidad" required>
+											<input type="number" step="0.01" class="form-control"
+												name="cargo" placeholder="Cantidad" required>
 											<div class="input-group-addon">
 												<select name="currency" placeholder="EUR">
 													<option value="EUR">EUR</option>
@@ -142,10 +162,14 @@
 						<p>
 
 							<button class="btn btn-success" name="reembolso"
-								value="reembolso" type="submit" <c:if test="${facturai.status == 2}">disabled</c:if> >Solicitar reembolso</button>
+								value="reembolso" type="submit"
+								<c:if test="${facturai.status == 2}">disabled</c:if>>Solicitar
+								reembolso</button>
 
 							<button class="btn btn-success" name="reembolso"
-								value="reembolso" type="button" <c:if test="${facturai.status != 2}">disabled</c:if> >Solicitar reintegro</button>
+								value="reembolso" type="button"
+								<c:if test="${facturai.status != 2}">disabled</c:if>>Solicitar
+								reintegro</button>
 						</form>
 						</p>
 

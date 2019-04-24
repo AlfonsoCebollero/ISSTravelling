@@ -10,16 +10,15 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
 	integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
 	crossorigin="anonymous">
-
 <meta charset="ISO-8859-1">
-<title>Perfil responsable</title>
+<title>Perfil empleado</title>
 </head>
 <body>
 	<div class="container">
 		<br>
 		<shiro:lacksRole name="empleado">
 	No tienes permiso para ver el contenido de esta página
-	</shiro:lacksRole>
+		</shiro:lacksRole>
 		<shiro:hasRole name="empleado">
 			<div class="row">
 				<nav class="navbar navbar-default">
@@ -34,11 +33,12 @@
 						</div>
 						<div class="collapse navbar-collapse" id="myNavbar">
 							<ul class="nav navbar-nav">
-								<li><a href="/ISST2019/HomeEmpleadoServlet?email=b">Home</a></li>
+								<li class="active"><a
+									href="/ISST2019/HomeEmpleadoServlet?email=b">Home</a></li>
 								<li><a href="/ISST2019/EmpleadoServlet?email=b">Tus
 										Viajes</a></li>
-								<li class="active"><a
-									href="/ISST2019/ResponsableServlet?email=b">Tus Empleados</a></li>
+								<li><a href="/ISST2019/ResponsableServlet?email=b">Tus
+										Empleados</a></li>
 							</ul>
 							<ul class="nav navbar-nav navbar-right">
 								<li><a href="LogoutServlet"><span
@@ -50,48 +50,22 @@
 			</div>
 			<br>
 			<div class="row">
-				<h3 class="text-center">Listado de empleados a su cargo</h3>
-				<table class="table table-hover table-bordered">
-					<tr>
-						<th>Nombre</th>
-						<th>Email</th>
-						<th>Viajes del Empleado</th>
-
-					</tr>
-					<c:forEach items="${empleado_list}" var="empleadoi">
-						<tr class=" warning clickable-row"
-							data-href="/ISST2019/ViajesEmpleadoResponsableServlet?email=${empleadoi.email }">
-							<td>${empleadoi.name }</td>
-							<td>${empleadoi.email }</td>
-							<td>${fn:length(empleadoi.advisedViajes) }</td>
-						</tr>
-					</c:forEach>
-				</table>
+				<div class="text-center">
+					<br>
+					<h3 class="text-center">Tu perfil</h3>
+					<br>
+					<div class=" col-md-offset-3">
+						<ul>
+							<li>Tu nombre es <b>${ empleado.name}</b></li>
+							<li>Tu email es <b>${ empleado.email}</b></li>
+							<li>Tu teléfono es <b>&{empleado.telefono}</b></li>
+							<li>Tienes <b>${fn:length(empleado.advisedViajes) }</b> viajes activos</li>
+							<li>Tienes <b>${tusempleados }</b> empleados a tu cargo</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 		</shiro:hasRole>
 	</div>
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-		crossorigin="anonymous"></script>
 </body>
 </html>
-<style>
-.clickable-row {
-	cursor: pointer;
-}
-</style>
-<script>
-	$(document).ready(function($) {
-		$(".clickable-row").click(function() {
-			window.document.location = $(this).data("href");
-		});
-	});
-</script>

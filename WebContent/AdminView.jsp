@@ -15,17 +15,33 @@
 </head>
 <body>
 	<div class="container">
-		<shiro:user>
-    Welcome back <shiro:principal />! Click <a href="LogoutServlet">here</a> to logout.
-		</shiro:user>
+		<br>
 		<shiro:lacksRole name="admin">
 	No tienes permiso para ver el contenido de esta página
 		</shiro:lacksRole>
 		<shiro:hasRole name="admin">
-			<div class="jumbotron text-center">
-				<h1>Administrador</h1>
+			<div class="row">
+				<nav class="navbar navbar-default">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle"
+								data-toggle="collapse" data-target="#myNavbar">
+								<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+									class="icon-bar"></span>
+							</button>
+							<b class="navbar-brand">Administrador</b>
+						</div>
+						<div class="collapse navbar-collapse" id="myNavbar">
+							<ul class="nav navbar-nav navbar-right">
+								<li><a href="LogoutServlet"><span
+										class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+							</ul>
+						</div>
+					</div>
+				</nav>
 			</div>
-			<div class="row well">
+			<br>
+			<div class="row ">
 				<div class="text-center">
 					<h3 class="text-center">Crear empleado nuevo</h3>
 					<form action="CreateEmpleadoServlet" method="post">
@@ -164,5 +180,16 @@
 			</div>
 		</shiro:hasRole>
 	</div>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
 </body>
 </html>

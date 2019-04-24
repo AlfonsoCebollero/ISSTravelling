@@ -18,21 +18,42 @@
 </head>
 <body>
 	<div class="container">
-		<shiro:user>
-    Welcome back <shiro:principal />! Click <a href="LogoutServlet">here</a> to logout.
-		</shiro:user>
+		<br>
 		<shiro:lacksRole name="empleado">
 	No tienes permiso para ver el contenido de esta página
 	</shiro:lacksRole>
 		<shiro:hasRole name="empleado">
-			<div class="jumbotron text-center">
-				<h1>Empleado</h1>
-				<p>
-					Tu Email: ${ empleado.email } <br>Tu nombre: ${ empleado.name }
-				</p>
+			<div class="row">
+				<nav class="navbar navbar-default">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle"
+								data-toggle="collapse" data-target="#myNavbar">
+								<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+									class="icon-bar"></span>
+							</button>
+							<b class="navbar-brand">Empleado</b>
+						</div>
+						<div class="collapse navbar-collapse" id="myNavbar">
+							<ul class="nav navbar-nav">
+								<li><a href="/ISST2019/HomeEmpleadoServlet?email=b">Home</a></li>
+								<li class="active"><a
+									href="/ISST2019/EmpleadoServlet?email=b">Tus Viajes</a></li>
+								<li><a href="/ISST2019/ResponsableServlet?email=b">Tus
+										Empleados</a></li>
+							</ul>
+							<ul class="nav navbar-nav navbar-right">
+								<li><a href="LogoutServlet"><span
+										class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+							</ul>
+						</div>
+					</div>
+				</nav>
 			</div>
-			<div class="row well">
+			<br>
+			<div class="row">
 				<div class="text-center">
+					<br>
 					<h3 class="text-center">Crear solicitud de viaje</h3>
 					<form action="CreateViajeServlet" method="post">
 						<div class="form-group">
@@ -94,7 +115,7 @@
 					</form>
 				</div>
 				<hr>
-
+				<br>
 				<h3 class="text-center">Listado de viajes</h3>
 				<table class="table table-hover table-bordered">
 					<tr>
