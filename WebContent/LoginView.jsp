@@ -19,7 +19,7 @@
 		<br>
 		<shiro:guest>
 			<div class="jumbotron text-center">
-				<h1>Login</h1>
+				<h1>Gestor de Viajes</h1>
 			</div>
 			<div class="row text-center well">
 				<form action="LoginServlet" method="post" class="form-inline">

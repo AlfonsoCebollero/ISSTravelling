@@ -67,18 +67,22 @@
 					</tr>
 					<c:forEach items="${viajes_list}" var="viajei">
 						<tr
-							<c:if test="${viajei.status == 2 || viajei.status == 3}">class="success"</c:if>
-							<c:if test="${viajei.status == 5}">class="danger"</c:if>
+							<c:if test="${viajei.status > 2 || viajei.status < 9}">class="success"</c:if>
+							<c:if test="${viajei.status == 2}">class="danger"</c:if>
 							<c:if test="${viajei.status == 1}">class="warning"</c:if>>
 							<td>${viajei.id }</td>
 							<td>${viajei.destino }</td>
 							<td>${viajei.fecha_inicio }</td>
 							<td>${viajei.fecha_fin }</td>
 							<td><c:if test="${viajei.status == 1}">Solicitado</c:if> <c:if
-									test="${viajei.status == 2}">Aprobado</c:if> <c:if
-									test="${viajei.status == 3}">En curso</c:if> <c:if
-									test="${viajei.status == 4}">Finalizado</c:if> <c:if
-									test="${viajei.status == 5}">Rechazado</c:if></td>
+									test="${viajei.status == 2}">Rechazado</c:if> <c:if
+									test="${viajei.status == 3}">Aprobado</c:if> <c:if
+									test="${viajei.status == 4}">En Reembolso</c:if> <c:if
+									test="${viajei.status == 5}">Reembolsado</c:if> <c:if
+									test="${viajei.status == 6}">En curso</c:if> <c:if
+									test="${viajei.status == 7}">Finalizado</c:if> <c:if
+									test="${viajei.status == 8}">En reintegro</c:if> <c:if
+									test="${viajei.status == 9}">Reintegrado</c:if></td>
 							<c:if test="${viajei.status == 1}">
 								<form action="Form2ResponsableServlet" method="post">
 									<td><input class="form-control" type="number"
@@ -86,7 +90,7 @@
 									<td><input type="hidden" name="id" value="${viajei.id}" />
 										<input type="hidden" name="advisoremail"
 										value="${viajei.advisor.email}" /> <input type="hidden"
-										name="action" value="2" />
+										name="action" value="3" />
 										<button type="submit" class="btn btn-success">Aceptar
 											viaje</button>
 								</form>
@@ -94,7 +98,7 @@
 									<input type="hidden" name="id" value="${viajei.id}" /> <input
 										type="hidden" name="advisoremail"
 										value="${viajei.advisor.email}" /> <input type="hidden"
-										name="action" value="5" /><input type="hidden"
+										name="action" value="2" /><input type="hidden"
 										name="presupuesto" value="${viajei.presupuesto}" />
 									<button type="submit" class="btn btn-danger">Rechazar
 										viaje</button>

@@ -129,8 +129,9 @@
 					</tr>
 					<c:forEach items="${vieajes_list}" var="viajei">
 						<tr
-							class="<c:if test="${viajei.status == 2 || viajei.status == 3}">success </c:if>
-						<c:if test="${viajei.status == 5 }">danger </c:if> clickable-row"
+							class="<c:if test="${viajei.status > 2 || viajei.status < 7}">success </c:if>
+						<c:if test="${viajei.status == 2 }">danger </c:if>
+						<c:if test="${viajei.status > 6 }">info </c:if> clickable-row"
 							data-href="/ISST2019/EmpleadoViajeServlet?id=${viajei.id }">
 							<td>${viajei.id }</td>
 							<td>${viajei.destino }</td>
@@ -138,10 +139,14 @@
 							<td>${viajei.fecha_fin }</td>
 							<td>${viajei.presupuesto }</td>
 							<td><c:if test="${viajei.status == 1}">Solicitado</c:if> <c:if
-									test="${viajei.status == 2}">Aprobado</c:if> <c:if
-									test="${viajei.status == 3}">En curso</c:if> <c:if
-									test="${viajei.status == 4}">Finalizado</c:if> <c:if
-									test="${viajei.status == 5}">Rechazado</c:if></td>
+									test="${viajei.status == 2}">Rechazado</c:if> <c:if
+									test="${viajei.status == 3}">Aprobado</c:if> <c:if
+									test="${viajei.status == 4}">En Reembolso</c:if> <c:if
+									test="${viajei.status == 5}">Reembolsado</c:if> <c:if
+									test="${viajei.status == 6}">En curso</c:if> <c:if
+									test="${viajei.status == 7}">Finalizado</c:if> <c:if
+									test="${viajei.status == 8}">En reintegro</c:if> <c:if
+									test="${viajei.status == 9}">Reintegrado</c:if></td>
 						</tr>
 					</c:forEach>
 				</table>
