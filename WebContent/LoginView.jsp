@@ -37,11 +37,6 @@
 						<input type="password" class="form-control" name="password"
 							placeholder="password" required>
 					</div>
-					<div class="form-group input-group text-left">
-						<input type="radio" name="type" value="empleado" checked>
-						Empleado<br> <input type="radio" name="type" value="responsable">
-						Responsable<br>
-					</div>&nbsp &nbsp
 					<button class="btn btn-primary" type="submit">Login</button>
 
 				</form>

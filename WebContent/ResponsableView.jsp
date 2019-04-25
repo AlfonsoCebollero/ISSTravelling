@@ -34,11 +34,14 @@
 						</div>
 						<div class="collapse navbar-collapse" id="myNavbar">
 							<ul class="nav navbar-nav">
-								<li><a href="/ISST2019/HomeEmpleadoServlet?email=b">Home</a></li>
-								<li><a href="/ISST2019/EmpleadoServlet?email=b">Tus
+								<li><a
+									href="/ISST2019/HomeEmpleadoServlet?email=${responsable.email }">Home</a></li>
+								<li><a
+									href="/ISST2019/EmpleadoServlet?email=${responsable.email }">Tus
 										Viajes</a></li>
 								<li class="active"><a
-									href="/ISST2019/ResponsableServlet?email=b">Tus Empleados</a></li>
+									href="/ISST2019/ResponsableServlet?email=${responsable.email }">Tus
+										Empleados</a></li>
 							</ul>
 							<ul class="nav navbar-nav navbar-right">
 								<li><a href="LogoutServlet"><span

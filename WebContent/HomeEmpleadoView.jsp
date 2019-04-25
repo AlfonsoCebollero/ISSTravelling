@@ -29,15 +29,18 @@
 								<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 									class="icon-bar"></span>
 							</button>
-							<b class="navbar-brand">Empleado</b>
+							<b class="navbar-brand">  Empleado
+							</b>
 						</div>
 						<div class="collapse navbar-collapse" id="myNavbar">
 							<ul class="nav navbar-nav">
 								<li class="active"><a
-									href="/ISST2019/HomeEmpleadoServlet?email=b">Home</a></li>
-								<li><a href="/ISST2019/EmpleadoServlet?email=b">Tus
+									href="/ISST2019/HomeEmpleadoServlet?email=${empleado.email }">Home</a></li>
+								<li><a
+									href="/ISST2019/EmpleadoServlet?email=${empleado.email }">Tus
 										Viajes</a></li>
-								<li><a href="/ISST2019/ResponsableServlet?email=b">Tus
+								<li><a
+									href="/ISST2019/ResponsableServlet?email=${empleado.email }">Tus
 										Empleados</a></li>
 							</ul>
 							<ul class="nav navbar-nav navbar-right">
@@ -49,23 +52,36 @@
 				</nav>
 			</div>
 			<br>
-			<div class="row">
-				<div class="text-center">
-					<br>
-					<h3 class="text-center">Tu perfil</h3>
-					<br>
-					<div class=" col-md-offset-3">
-						<ul>
-							<li>Tu nombre es <b>${ empleado.name}</b></li>
-							<li>Tu email es <b>${ empleado.email}</b></li>
-							<li>Tu teléfono es <b>&{empleado.telefono}</b></li>
-							<li>Tienes <b>${fn:length(empleado.advisedViajes) }</b> viajes activos</li>
-							<li>Tienes <b>${tusempleados }</b> empleados a tu cargo</li>
-						</ul>
-					</div>
+			<div class="row ">
+				<br>
+				<h3 class="text-center">Tu perfil</h3>
+				<br>
+				<div class="col-md-6 col-md-offset-3">
+					<ul class="list-group">
+						<li class="list-group-item">Tu nombre es <b>${ empleado.name}</b></li>
+						<li class="list-group-item">Tu email es <b>${ empleado.email}</b></li>
+						<li class="list-group-item">Tu teléfono es <b>${empleado.telefono}</b></li>
+						<li class="list-group-item">Tienes <b>${fn:length(empleado.advisedViajes) }</b>
+							viajes activos
+						</li>
+						<li class="list-group-item">Tienes <b>${tusempleados }</b>
+							empleados a tu cargo
+						</li>
+					</ul>
 				</div>
 			</div>
 		</shiro:hasRole>
 	</div>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
 </body>
 </html>

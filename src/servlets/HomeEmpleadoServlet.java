@@ -16,7 +16,7 @@ import model.Empleado;
 /**
  * Servlet implementation class ProfessorServlet
  */
-@WebServlet("/EmpleadoServlet")
+@WebServlet("/HomeEmpleadoServlet")
 public class HomeEmpleadoServlet extends HttpServlet {
 		   
 	    @Override

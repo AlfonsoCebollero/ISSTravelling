@@ -39,16 +39,9 @@ public class LoginServlet extends HttpServlet {
 					System.out.println("admin");
 					resp.sendRedirect(req.getContextPath() + "/AdminServlet");
 				} else if (currentUser.hasRole("empleado")) {
-					if (type.equals("empleado")) {
-						System.out.println("empleado");
-						resp.sendRedirect(
-								req.getContextPath() + "/EmpleadoServlet?email=" + currentUser.getPrincipal());
-					} else {
-						System.out.println("responsable");
-						resp.sendRedirect(
-								req.getContextPath() + "/ResponsableServlet?email=" + currentUser.getPrincipal());
-
-					}
+					System.out.println("empleado");
+					resp.sendRedirect(
+							req.getContextPath() + "/HomeEmpleadoServlet?email=" + currentUser.getPrincipal());
 				} else {
 					System.out.println("no rol");
 					resp.sendRedirect(req.getContextPath() + "/LoginServlet");
