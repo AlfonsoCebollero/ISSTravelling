@@ -1,6 +1,5 @@
 package servlets;
 
-
 import dao.EmpleadoDAO;
 import dao.EmpleadoDAOImplementation;
 import dao.ViajeDAO;
@@ -24,17 +23,17 @@ import org.apache.shiro.subject.Subject;
 
 @WebServlet("/CreateViajeServlet")
 public class CreateViajeServlet extends HttpServlet {
-	
+
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-		
-		String destino = req.getParameter( "destino" );
-		String ida = req.getParameter( "ida" );
-		String vuelta = req.getParameter( "vuelta" );
-		String presupuesto = req.getParameter( "presupuesto" );
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		String destino = req.getParameter("destino");
+		String ida = req.getParameter("ida");
+		String vuelta = req.getParameter("vuelta");
+		String presupuesto = req.getParameter("presupuesto");
 		Subject currentUser = SecurityUtils.getSubject();
 		String emailAdvisor = (String) currentUser.getPrincipal();
-		
+
 		Date dateIda = null;
 		Date dateVuelta = null;
 		try {
@@ -44,22 +43,25 @@ public class CreateViajeServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-				
-		Viaje viaje = new Viaje();
-		viaje.setDestino( destino );
-		viaje.setFecha_inicio( new java.sql.Date(dateIda.getTime()) );
-		viaje.setFecha_fin( new java.sql.Date(dateVuelta.getTime())  );
-		viaje.setPresupuesto( Integer.parseInt(presupuesto) );
-		viaje.setStatus( 1 );
-		
-		EmpleadoDAO edao = EmpleadoDAOImplementation.getInstance();
-		Empleado advisor = edao.read(emailAdvisor);
-		viaje.setAdvisor(advisor);
-		
-		ViajeDAO vdao = ViajeDAOImplementation.getInstance();
-		vdao.create( viaje );
-		
-		resp.sendRedirect(req.getContextPath() + "/EmpleadoServlet?email="+emailAdvisor);
-		
+
+		if (dateVuelta.before(dateIda)) {
+			System.out.println("fecha de vuelta anterior a la de ida");
+		} else {
+			Viaje viaje = new Viaje();
+			viaje.setDestino(destino);
+			viaje.setFecha_inicio(new java.sql.Date(dateIda.getTime()));
+			viaje.setFecha_fin(new java.sql.Date(dateVuelta.getTime()));
+			viaje.setPresupuesto(Integer.parseInt(presupuesto));
+			viaje.setStatus(1);
+
+			EmpleadoDAO edao = EmpleadoDAOImplementation.getInstance();
+			Empleado advisor = edao.read(emailAdvisor);
+			viaje.setAdvisor(advisor);
+
+			ViajeDAO vdao = ViajeDAOImplementation.getInstance();
+			vdao.create(viaje);
+		}
+		resp.sendRedirect(req.getContextPath() + "/EmpleadoServlet?email=" + emailAdvisor);
+
 	}
 }

@@ -58,15 +58,15 @@
 					<div class=" col-md-offset-3">
 						<ul>
 							<li>El estado del viaje es <b><c:if
-										test="${viajei.status == 1}">Solicitado</c:if> <c:if
-										test="${viajei.status == 2}">Rechazado</c:if> <c:if
-										test="${viajei.status == 3}">Aprobado</c:if> <c:if
-										test="${viajei.status == 4}">En Reembolso</c:if> <c:if
-										test="${viajei.status == 5}">Reembolsado</c:if> <c:if
-										test="${viajei.status == 6}">En curso</c:if> <c:if
-										test="${viajei.status == 7}">Finalizado</c:if> <c:if
-										test="${viajei.status == 8}">En reintegro</c:if> <c:if
-										test="${viajei.status == 9}">Reintegrado</c:if></b></li>
+										test="${viaje.status == 1}">Solicitado</c:if> <c:if
+										test="${viaje.status == 2}">Rechazado</c:if> <c:if
+										test="${viaje.status == 3}">Aprobado</c:if> <c:if
+										test="${viaje.status == 4}">En Reembolso</c:if> <c:if
+										test="${viaje.status == 5}">Reembolsado</c:if> <c:if
+										test="${viaje.status == 6}">En curso</c:if> <c:if
+										test="${viaje.status == 7}">Finalizado</c:if> <c:if
+										test="${viaje.status == 8}">En reintegro</c:if> <c:if
+										test="${viaje.status == 9}">Reintegrado</c:if></b></li>
 							<li>El destino del viaje es <b>${ viaje.destino }</b> en <b>${country}</b></li>
 							<li>La fecha de inicio es <b>${ viaje.fecha_inicio }</b> y
 								de vuelta <b>${viaje.fecha_fin}</b></li>
@@ -177,12 +177,12 @@
 
 						<button class="btn btn-success" name="reembolso" value="reembolso"
 							type="submit"
-							<c:if test="${facturai.status == 2}">disabled</c:if>>Solicitar
+							<c:if test="${viaje.status != 3}">disabled</c:if>>Solicitar
 							reembolso</button>
 
-						<button class="btn btn-success" name="reembolso" value="reembolso"
+						<button class="btn btn-success" name="reintegro" value="reintegro"
 							type="button"
-							<c:if test="${facturai.status != 2}">disabled</c:if>>Solicitar
+							<c:if test="${viaje.status != 7}">disabled</c:if>>Solicitar
 							reintegro</button>
 					</form>
 					</p>

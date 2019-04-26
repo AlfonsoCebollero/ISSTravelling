@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Entity;
@@ -78,7 +79,18 @@ public class Empleado  implements Serializable{
 
 
 	public Collection<Viaje> getAdvisedViajes() {
-		return advisedViajes;
+		Collection<Viaje> out = new ArrayList<Viaje>();
+		for(Viaje viaje : advisedViajes) {
+			boolean esta = false;
+			for(Viaje viaje2 : out) {
+				if(viaje2.getId()==viaje.getId()) {
+					esta=true;
+				}
+			}if(!esta) {
+				out.add(viaje);
+			}
+		}
+		return out;
 	}
 
 

@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.Calendar;
 import java.util.Collection;
 
 import org.hibernate.Session;
@@ -73,6 +74,17 @@ public class ViajeDAOImplementation implements ViajeDAO{
 			System.out.println("No se ha podido leer todos los Viajes");
 		} finally {
 			session.close();
+			for(Viaje viaje : viajes) {
+				java.sql.Date sqlDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+				if(viaje.getStatus() < 8 && viaje.getStatus() > 2 && viaje.getFecha_inicio().compareTo(sqlDate) <= 0) {
+					System.out.println("en curso o terminado");
+					viaje.setStatus(6);
+					if( viaje.getFecha_fin().compareTo(sqlDate) < 0) {
+						viaje.setStatus(7);
+					}
+					update(viaje);
+				}
+			}
 		}
 		return viajes;
 	}

@@ -12,15 +12,15 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 
-import dao.EmpleadoDAO;
-import dao.EmpleadoDAOImplementation;
+import dao.ViajeDAO;
+import dao.ViajeDAOImplementation;
 
 @WebServlet({ "/LoginServlet", "/" })
 public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		EmpleadoDAO edao = EmpleadoDAOImplementation.getInstance();
-		req.getSession().setAttribute("empleado_list", edao.readAll());
+		ViajeDAO vdao = ViajeDAOImplementation.getInstance();
+		req.getSession().setAttribute("viaje_list", vdao.readAll());
 		getServletContext().getRequestDispatcher("/LoginView.jsp").forward(req, resp);
 
 	}
