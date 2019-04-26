@@ -67,7 +67,7 @@
 					</tr>
 					<c:forEach items="${viajes_list}" var="viajei">
 						<tr
-							<c:if test="${viajei.status > 2 || viajei.status < 9}">class="success"</c:if>
+							<c:if test="${viajei.status > 2 || viajei.status < 12}">class="success"</c:if>
 							<c:if test="${viajei.status == 2}">class="danger"</c:if>
 							<c:if test="${viajei.status == 1}">class="warning"</c:if>>
 							<td>${viajei.id }</td>
@@ -77,12 +77,14 @@
 							<td><c:if test="${viajei.status == 1}">Solicitado</c:if> <c:if
 									test="${viajei.status == 2}">Rechazado</c:if> <c:if
 									test="${viajei.status == 3}">Aprobado</c:if> <c:if
-									test="${viajei.status == 4}">En Reembolso</c:if> <c:if
-									test="${viajei.status == 5}">Reembolsado</c:if> <c:if
-									test="${viajei.status == 6}">En curso</c:if> <c:if
-									test="${viajei.status == 7}">Finalizado</c:if> <c:if
-									test="${viajei.status == 8}">En reintegro</c:if> <c:if
-									test="${viajei.status == 9}">Reintegrado</c:if></td>
+									test="${viajei.status == 4}">En Reembolso Responsable</c:if> <c:if
+									test="${viajei.status == 5}">En Reembolso Organo</c:if> <c:if
+									test="${viajei.status == 6}">Reembolsado</c:if> <c:if
+									test="${viajei.status == 7}">En curso</c:if> <c:if
+									test="${viajei.status == 8}">Finalizado</c:if> <c:if
+									test="${viajei.status == 9}">En reintegro Responsable</c:if> <c:if
+									test="${viajei.status == 10}">En reintegro Organo</c:if> <c:if
+									test="${viajei.status == 11}">Reintegrado</c:if></td>
 							<c:if test="${viajei.status == 1}">
 								<form action="Form2ResponsableServlet" method="post">
 									<td><input class="form-control" type="number"

@@ -61,15 +61,18 @@
 										test="${viaje.status == 1}">Solicitado</c:if> <c:if
 										test="${viaje.status == 2}">Rechazado</c:if> <c:if
 										test="${viaje.status == 3}">Aprobado</c:if> <c:if
-										test="${viaje.status == 4}">En Reembolso</c:if> <c:if
-										test="${viaje.status == 5}">Reembolsado</c:if> <c:if
-										test="${viaje.status == 6}">En curso</c:if> <c:if
-										test="${viaje.status == 7}">Finalizado</c:if> <c:if
-										test="${viaje.status == 8}">En reintegro</c:if> <c:if
-										test="${viaje.status == 9}">Reintegrado</c:if></b></li>
+										test="${viaje.status == 4}">En Reembolso Responsable</c:if> <c:if
+										test="${viaje.status == 5}">En Reembolso Organo</c:if> <c:if
+										test="${viaje.status == 6}">Reembolsado</c:if> <c:if
+										test="${viaje.status == 7}">En curso</c:if> <c:if
+										test="${viaje.status == 8}">Finalizado</c:if> <c:if
+										test="${viaje.status == 9}">En reintegro Responsable</c:if> <c:if
+										test="${viaje.status == 10}">En reintegro Organo</c:if> <c:if
+										test="${viaje.status == 11}">Reintegrado</c:if></b></li>
 							<li>El destino del viaje es <b>${ viaje.destino }</b> en <b>${country}</b></li>
 							<li>La fecha de inicio es <b>${ viaje.fecha_inicio }</b> y
 								de vuelta <b>${viaje.fecha_fin}</b></li>
+							<li>El presupuesto del que dispones es de <b>${ viaje.presupuesto } €</b></li>
 							<li>La moneda en <b>${country}</b> es <b>${ currency }</b>
 								con cambio al EUR de <b>${change}</b></li>
 							<li>El tiempo actual en <b>${viaje.destino}</b> es <b>${ weather }</b></li>
@@ -79,7 +82,7 @@
 				<hr>
 				<c:if test="${viaje.status > 2}">
 					<div class="row text-center">
-						<c:if test="${viaje.status < 8}">
+						<c:if test="${viaje.status < 9}">
 							<h3 class="text-center">Añadir factura</h3>
 							<form action="CreateFacturaServlet" enctype="multipart/form-data"
 								method="post">
@@ -148,7 +151,7 @@
 				<table class="table table-striped table-bordered">
 					<tr>
 						<th>Id</th>
-						<th>Cargo</th>
+						<th>Cargo (Total:${total}€)</th>
 						<th>Comprobante</th>
 						<th>Descripción</th>
 						<th>Estado</th>
@@ -159,7 +162,7 @@
 							<c:if test="${facturai.estado == 3}">class="danger"</c:if>>
 
 							<td>${facturai.id }</td>
-							<td>${facturai.cargo }</td>
+							<td>${facturai.cargo }€</td>
 							<td><form action="DownloadFileServlet">
 									<input type="hidden" name="id" value="${facturai.id}">
 									<button class="btn btn-info" type="submit">Descargar</button>
@@ -176,13 +179,11 @@
 					<p>
 
 						<button class="btn btn-success" name="reembolso" value="reembolso"
-							type="submit"
-							<c:if test="${viaje.status != 3}">disabled</c:if>>Solicitar
+							type="submit" <c:if test="${viaje.status != 3}">disabled</c:if>>Solicitar
 							reembolso</button>
 
 						<button class="btn btn-success" name="reintegro" value="reintegro"
-							type="button"
-							<c:if test="${viaje.status != 7}">disabled</c:if>>Solicitar
+							type="button" <c:if test="${viaje.status != 8}">disabled</c:if>>Solicitar
 							reintegro</button>
 					</form>
 					</p>

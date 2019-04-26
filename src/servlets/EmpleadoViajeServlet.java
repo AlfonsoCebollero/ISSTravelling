@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.Collection;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +18,7 @@ import dao.ViajeDAO;
 import dao.ViajeDAOImplementation;
 import soa.Query;
 import model.Empleado;
+import model.Factura;
 import model.Viaje;
 
 /**
@@ -29,23 +32,30 @@ public class EmpleadoViajeServlet extends HttpServlet {
 		ViajeDAO vdao = ViajeDAOImplementation.getInstance();
 		Viaje viaje = vdao.read(Integer.parseInt(id));
 		req.getSession().setAttribute("viaje", viaje);
-		req.getSession().setAttribute("facturas_list", viaje.getAdvisedFacturas());
+		Collection<Factura> facturas = viaje.getAdvisedFacturas();
+		req.getSession().setAttribute("facturas_list", facturas);
+
+		Float total = 0.0f;
+		for (Factura factura : facturas) {
+			total += factura.getCargo();
+		}
+		total = (float) (Math.floor(total * 100) / 100);
+		req.getSession().setAttribute("total", total);
 
 		Subject currentUser = SecurityUtils.getSubject();
 		String emailEmpleado = (String) currentUser.getPrincipal();
 		EmpleadoDAO edao = EmpleadoDAOImplementation.getInstance();
 		Empleado empleado = edao.read(emailEmpleado);
-		req.getSession().setAttribute( "empleado", empleado);
-		
+		req.getSession().setAttribute("empleado", empleado);
+
 		String[] Country = Query.GetCountryAndWeather(viaje.getDestino());
 		String[] info = Query.GetNameAndCurrency(Country[0]);
 		Float cambio = Query.GetChange(info[1]);
-		req.getSession().setAttribute( "country", info[0]);
-		req.getSession().setAttribute( "weather", Country[1]);
-		req.getSession().setAttribute( "currency", info[1]);
-		req.getSession().setAttribute( "change", cambio);
-		
-		
+		req.getSession().setAttribute("country", info[0]);
+		req.getSession().setAttribute("weather", Country[1]);
+		req.getSession().setAttribute("currency", info[1]);
+		req.getSession().setAttribute("change", cambio);
+
 		getServletContext().getRequestDispatcher("/EmpleadoViajeView.jsp").forward(req, resp);
 	}
 

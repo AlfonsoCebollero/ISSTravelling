@@ -35,7 +35,7 @@ public class CreateFacturaServlet extends HttpServlet {
 		if(!currency.equals("EUR")) {
 			Float change = Float.parseFloat(req.getParameter("change"));
 			cargo = cargo*change;
-		}
+		}cargo = (float) (Math.floor(cargo*100)/100);
 		
 		Part filePart = (Part) req.getPart("comprobante");
 		InputStream fileContent = (InputStream) filePart.getInputStream();
