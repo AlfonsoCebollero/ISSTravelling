@@ -34,13 +34,14 @@
 						<div class="collapse navbar-collapse" id="myNavbar">
 							<ul class="nav navbar-nav">
 								<li><a
-									href="/ISST2019/HomeEmpleadoServlet?email=${empleado.email }">Home</a></li>
+									href="/ISST2019/HomeEmpleadoServlet?email=${empleado.email }"><span
+										class="glyphicon glyphicon-home"></span> Home</a></li>
 								<li class="active"><a
-									href="/ISST2019/EmpleadoServlet?email=${empleado.email }">Tus
-										Viajes</a></li>
+									href="/ISST2019/EmpleadoServlet?email=${empleado.email }"><span
+										class="glyphicon glyphicon-globe"></span> Tus Viajes</a></li>
 								<li><a
-									href="/ISST2019/ResponsableServlet?email=${empleado.email }">Tus
-										Empleados</a></li>
+									href="/ISST2019/ResponsableServlet?email=${empleado.email }"><span
+										class="glyphicon glyphicon-user"></span> Tus Empleados</a></li>
 							</ul>
 							<ul class="nav navbar-nav navbar-right">
 								<li><a href="LogoutServlet"><span
@@ -51,7 +52,7 @@
 				</nav>
 			</div>
 			<br>
-			<div class="row well">
+			<div class="row">
 				<div class="row">
 					<h3 class="text-center">Descripción de viaje con id ${ viaje.id }</h3>
 					<br>
@@ -72,7 +73,8 @@
 							<li>El destino del viaje es <b>${ viaje.destino }</b> en <b>${country}</b></li>
 							<li>La fecha de inicio es <b>${ viaje.fecha_inicio }</b> y
 								de vuelta <b>${viaje.fecha_fin}</b></li>
-							<li>El presupuesto del que dispones es de <b>${ viaje.presupuesto } €</b></li>
+							<li>El presupuesto del que dispones es de <b>${ viaje.presupuesto }
+									€</b></li>
 							<li>La moneda en <b>${country}</b> es <b>${ currency }</b>
 								con cambio al EUR de <b>${change}</b></li>
 							<li>El tiempo actual en <b>${viaje.destino}</b> es <b>${ weather }</b></li>
@@ -140,7 +142,9 @@
 									</div>
 									</p>
 									<p>
-										<button class="btn btn-success text-center" type="submit">Añadir</button>
+										<button class="btn btn-success text-center" type="submit">
+											<span class="glyphicon glyphicon-plus"></span> Añadir
+										</button>
 									</p>
 								</div>
 							</form>
@@ -148,50 +152,76 @@
 					<hr>
 				</c:if>
 				<h3 class="text-center">Listado de facturas</h3>
-				<table class="table table-striped table-bordered">
-					<tr>
-						<th>Id</th>
-						<th>Cargo (Total:${total}€)</th>
-						<th>Comprobante</th>
-						<th>Descripción</th>
-						<th>Estado</th>
+				<br>
+				<c:choose>
+					<c:when test="${fn:length(facturas_list) > 0}">
+						<div class="progress">
+							<div class="progress-bar progress-bar-success" role="progressbar"
+								style="width: ${porcentajeAceptado}%">${porcentajeAceptado}%
+								Aceptado</div>
+							<div class="progress-bar progress-bar-danger" role="progressbar"
+								style="width: ${porcentajeRechazado}%">${porcentajeRechazado}%
+								Rechazado</div>
+							<div class="progress-bar progress-bar-info" role="progressbar"
+								style="width: ${porcentajeSolicitado}%">${porcentajeSolicitado}%
+								Solicitado</div>
+						</div>
+						<br>
+						<table class="table table-striped table-bordered">
+							<tr>
+								<th>Id</th>
+								<th>Cargo (Total:${total}€)</th>
+								<th>Comprobante</th>
+								<th>Descripción</th>
+								<th>Estado</th>
 
-					</tr>
-					<c:forEach items="${facturas_list}" var="facturai">
-						<tr <c:if test="${facturai.estado == 2}">class="success"</c:if>
-							<c:if test="${facturai.estado == 3}">class="danger"</c:if>>
+							</tr>
+							<c:forEach items="${facturas_list}" var="facturai">
+								<tr <c:if test="${facturai.estado == 4}">class="success"</c:if>
+									<c:if test="${facturai.estado == 2}">class="danger"</c:if>>
 
-							<td>${facturai.id }</td>
-							<td>${facturai.cargo }€</td>
-							<td><form action="DownloadFileServlet">
-									<input type="hidden" name="id" value="${facturai.id}">
-									<button class="btn btn-info" type="submit">Descargar</button>
-								</form></td>
-							<td>${facturai.descripcion }</td>
-							<td><c:if test="${facturai.estado == 1}">Solicitado</c:if> <c:if
-									test="${facturai.estado == 2}">Aprobado</c:if> <c:if
-									test="${facturai.estado == 3}">Rechazado</c:if></td>
-						</tr>
-					</c:forEach>
+									<td>${facturai.id }</td>
+									<td>${facturai.cargo }€</td>
+									<td><form action="DownloadFileServlet">
+											<input type="hidden" name="id" value="${facturai.id}">
+											<button class="btn btn-info" type="submit">
+												<span class="glyphicon glyphicon-cloud-download"></span>
+												Descargar
+											</button>
+										</form></td>
+									<td>${facturai.descripcion }</td>
+									<td><c:if test="${facturai.estado == 1}">Solicitado</c:if>
+										<c:if test="${facturai.estado == 2}">Rechazado</c:if> <c:if
+											test="${facturai.estado == 3}">En proceso</c:if> <c:if
+											test="${facturai.estado == 4}">Aprobado</c:if></td>
+								</tr>
+							</c:forEach>
 
-				</table>
-				<div class="text-center">
-					<p>
+						</table>
+						<div class="text-center">
+							<p>
+								<button class="btn btn-success" name="reembolso"
+									value="reembolso" type="submit"
+									<c:if test="${viaje.status != 3}">disabled</c:if>>Solicitar
+									reembolso</button>
 
-						<button class="btn btn-success" name="reembolso" value="reembolso"
-							type="submit" <c:if test="${viaje.status != 3}">disabled</c:if>>Solicitar
-							reembolso</button>
-
-						<button class="btn btn-success" name="reintegro" value="reintegro"
-							type="button" <c:if test="${viaje.status != 8}">disabled</c:if>>Solicitar
-							reintegro</button>
-					</form>
-					</p>
-
-				</div>
-				</c:if>
+								<button class="btn btn-success" name="reintegro"
+									value="reintegro" type="button"
+									<c:if test="${viaje.status != 8}">disabled</c:if>>Solicitar
+									reintegro</button>
+							</form>
+							</p>
+					</c:when>
+					<c:otherwise>
+						<p class="text-center">No ha añadido ninguna factura aún</p>
+					</c:otherwise>
+				</c:choose>
 			</div>
-		</shiro:hasRole>
+			</c:if>
+			<br>
+			<br>
+	</div>
+	</shiro:hasRole>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

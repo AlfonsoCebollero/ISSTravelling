@@ -118,8 +118,9 @@
 							</div>
 							</p>
 							<p>
-								<button class="btn btn-success text-center" type="submit">Crear
-									Empleado</button>
+								<button class="btn btn-success text-center" type="submit">
+									<span class="glyphicon glyphicon-plus"></span> Crear Empleado
+								</button>
 							</p>
 						</div>
 					</form>
@@ -167,7 +168,7 @@
 							<td>${viajei.destino }</td>
 							<td>${viajei.fecha_inicio }</td>
 							<td>${viajei.fecha_fin }</td>
-							<td>${viajei.presupuesto }</td>
+							<td>${viajei.presupuesto }€</td>
 							<td><c:if test="${viajei.status == 1}">Solicitado</c:if> <c:if
 									test="${viajei.status == 2}">Rechazado</c:if> <c:if
 									test="${viajei.status == 3}">Aprobado</c:if> <c:if

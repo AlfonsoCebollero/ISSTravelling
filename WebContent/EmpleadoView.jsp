@@ -34,13 +34,14 @@
 						<div class="collapse navbar-collapse" id="myNavbar">
 							<ul class="nav navbar-nav">
 								<li><a
-									href="/ISST2019/HomeEmpleadoServlet?email=${empleado.email }">Home</a></li>
+									href="/ISST2019/HomeEmpleadoServlet?email=${empleado.email }"><span
+										class="glyphicon glyphicon-home"></span> Home</a></li>
 								<li class="active"><a
-									href="/ISST2019/EmpleadoServlet?email=${empleado.email }">Tus
-										Viajes</a></li>
+									href="/ISST2019/EmpleadoServlet?email=${empleado.email }"><span
+										class="glyphicon glyphicon-globe"></span> Tus Viajes</a></li>
 								<li><a
-									href="/ISST2019/ResponsableServlet?email=${empleado.email }">Tus
-										Empleados</a></li>
+									href="/ISST2019/ResponsableServlet?email=${empleado.email }"><span
+										class="glyphicon glyphicon-user"></span> Tus Empleados</a></li>
 							</ul>
 							<ul class="nav navbar-nav navbar-right">
 								<li><a href="LogoutServlet"><span
@@ -55,6 +56,7 @@
 				<div class="text-center">
 					<br>
 					<h3 class="text-center">Crear solicitud de viaje</h3>
+					<br>
 					<form action="CreateViajeServlet" method="post">
 						<div class="form-group">
 							<p>
@@ -108,8 +110,9 @@
 							</div>
 							</p>
 							<p>
-								<button class="btn btn-success text-center" type="submit">Solicitar
-									Viaje</button>
+								<button class="btn btn-success text-center" type="submit">
+									<span class="glyphicon glyphicon-plus"></span> Solicitar Viaje
+								</button>
 							</p>
 						</div>
 					</form>
@@ -117,41 +120,49 @@
 				<hr>
 				<br>
 				<h3 class="text-center">Listado de viajes</h3>
-				<table class="table table-hover table-bordered">
-					<tr>
-						<th>Id</th>
-						<th>Destino</th>
-						<th>Fecha de salida</th>
-						<th>Fecha de regreso</th>
-						<th>Presupuesto</th>
-						<th>Estado del viaje</th>
+				<br>
+				<c:choose>
+					<c:when test="${fn:length(empleado.advisedViajes) > 0}">
+						<table class="table table-hover table-bordered">
+							<tr>
+								<th>Id</th>
+								<th>Destino</th>
+								<th>Fecha de salida</th>
+								<th>Fecha de regreso</th>
+								<th>Presupuesto</th>
+								<th>Estado del viaje</th>
 
-					</tr>
-					<c:forEach items="${vieajes_list}" var="viajei">
-						<tr
-							class="<c:if test="${viajei.status > 2 || viajei.status < 8}">success </c:if>
+							</tr>
+							<c:forEach items="${vieajes_list}" var="viajei">
+								<tr
+									class="<c:if test="${viajei.status > 2 && viajei.status < 8}">success </c:if>
 						<c:if test="${viajei.status == 2 }">danger </c:if>
 						<c:if test="${viajei.status > 7 }">info </c:if> clickable-row"
-							data-href="/ISST2019/EmpleadoViajeServlet?id=${viajei.id }">
-							<td>${viajei.id }</td>
-							<td>${viajei.destino }</td>
-							<td>${viajei.fecha_inicio }</td>
-							<td>${viajei.fecha_fin }</td>
-							<td>${viajei.presupuesto } €</td>
-							<td><c:if test="${viajei.status == 1}">Solicitado</c:if> <c:if
-									test="${viajei.status == 2}">Rechazado</c:if> <c:if
-									test="${viajei.status == 3}">Aprobado</c:if> <c:if
-									test="${viajei.status == 4}">En Reembolso Responsable</c:if> <c:if
-									test="${viajei.status == 5}">En Reembolso Organo</c:if> <c:if
-									test="${viajei.status == 6}">Reembolsado</c:if> <c:if
-									test="${viajei.status == 7}">En curso</c:if> <c:if
-									test="${viajei.status == 8}">Finalizado</c:if> <c:if
-									test="${viajei.status == 9}">En reintegro Responsable</c:if> <c:if
-									test="${viajei.status == 10}">En reintegro Organo</c:if> <c:if
-									test="${viajei.status == 11}">Reintegrado</c:if></td>
-						</tr>
-					</c:forEach>
-				</table>
+									data-href="/ISST2019/EmpleadoViajeServlet?id=${viajei.id }">
+									<td>${viajei.id }</td>
+									<td>${viajei.destino }</td>
+									<td>${viajei.fecha_inicio }</td>
+									<td>${viajei.fecha_fin }</td>
+									<td>${viajei.presupuesto }€</td>
+									<td><c:if test="${viajei.status == 1}">Solicitado</c:if> <c:if
+											test="${viajei.status == 2}">Rechazado</c:if> <c:if
+											test="${viajei.status == 3}">Aprobado</c:if> <c:if
+											test="${viajei.status == 4}">En Reembolso Responsable</c:if>
+										<c:if test="${viajei.status == 5}">En Reembolso Organo</c:if>
+										<c:if test="${viajei.status == 6}">Reembolsado</c:if> <c:if
+											test="${viajei.status == 7}">En curso</c:if> <c:if
+											test="${viajei.status == 8}">Finalizado</c:if> <c:if
+											test="${viajei.status == 9}">En reintegro Responsable</c:if>
+										<c:if test="${viajei.status == 10}">En reintegro Organo</c:if>
+										<c:if test="${viajei.status == 11}">Reintegrado</c:if></td>
+								</tr>
+							</c:forEach>
+						</table>
+					</c:when>
+					<c:otherwise>
+						<p class="text-center">Aún no ha solicitado ningún viaje</p>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</shiro:hasRole>
 	</div>

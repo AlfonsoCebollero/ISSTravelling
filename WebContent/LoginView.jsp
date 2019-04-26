@@ -37,7 +37,9 @@
 						<input type="password" class="form-control" name="password"
 							placeholder="password" required>
 					</div>
-					<button class="btn btn-primary" type="submit">Login</button>
+					<button class="btn btn-primary  btn-lg" type="submit">
+						<span class="glyphicon glyphicon-log-in"></span> Log in
+					</button>
 
 				</form>
 			</div>

@@ -34,13 +34,14 @@
 						<div class="collapse navbar-collapse" id="myNavbar">
 							<ul class="nav navbar-nav">
 								<li><a
-									href="/ISST2019/HomeEmpleadoServlet?email=${responsable.email }">Home</a></li>
+									href="/ISST2019/HomeEmpleadoServlet?email=${responsable.email }"><span
+										class="glyphicon glyphicon-home"></span> Home</a></li>
 								<li><a
-									href="/ISST2019/EmpleadoServlet?email=${responsable.email }">Tus
-										Viajes</a></li>
+									href="/ISST2019/EmpleadoServlet?email=${responsable.email }"><span
+										class="glyphicon glyphicon-globe"></span> Tus Viajes</a></li>
 								<li class="active"><a
-									href="/ISST2019/ResponsableServlet?email=${responsable.email }">Tus
-										Empleados</a></li>
+									href="/ISST2019/ResponsableServlet?email=${responsable.email }"><span
+										class="glyphicon glyphicon-user"></span> Tus Empleados</a></li>
 							</ul>
 							<ul class="nav navbar-nav navbar-right">
 								<li><a href="LogoutServlet"><span
@@ -67,7 +68,7 @@
 					</tr>
 					<c:forEach items="${viajes_list}" var="viajei">
 						<tr
-							<c:if test="${viajei.status > 2 || viajei.status < 12}">class="success"</c:if>
+							<c:if test="${viajei.status > 2 && viajei.status < 12}">class="success"</c:if>
 							<c:if test="${viajei.status == 2}">class="danger"</c:if>
 							<c:if test="${viajei.status == 1}">class="warning"</c:if>>
 							<td>${viajei.id }</td>
@@ -86,25 +87,32 @@
 									test="${viajei.status == 10}">En reintegro Organo</c:if> <c:if
 									test="${viajei.status == 11}">Reintegrado</c:if></td>
 							<c:if test="${viajei.status == 1}">
-								<form action="Form2ResponsableServlet" method="post">
-									<td><input class="form-control" type="number"
-										name="presupuesto" value="${viajei.presupuesto}" /></td>
-									<td><input type="hidden" name="id" value="${viajei.id}" />
-										<input type="hidden" name="advisoremail"
-										value="${viajei.advisor.email}" /> <input type="hidden"
-										name="action" value="3" />
-										<button type="submit" class="btn btn-success">Aceptar
-											viaje</button>
-								</form>
-								<form action="Form2ResponsableServlet" method="post">
-									<input type="hidden" name="id" value="${viajei.id}" /> <input
-										type="hidden" name="advisoremail"
-										value="${viajei.advisor.email}" /> <input type="hidden"
-										name="action" value="2" /><input type="hidden"
-										name="presupuesto" value="${viajei.presupuesto}" />
-									<button type="submit" class="btn btn-danger">Rechazar
-										viaje</button>
-								</form>
+								<td><form id="${viajei.id}aceptForm"
+										action="Form2ResponsableServlet" method="post">
+										<input class="form-control" type="number" name="presupuesto"
+											value="${viajei.presupuesto}" /><input type="hidden"
+											name="id" value="${viajei.id}" /> <input type="hidden"
+											name="advisoremail" value="${viajei.advisor.email}" /> <input
+											type="hidden" name="action" value="3" />
+									</form>
+									<form id="${viajei.id}denyForm"
+										action="Form2ResponsableServlet" method="post">
+										<input type="hidden" name="id" value="${viajei.id}" /> <input
+											type="hidden" name="advisoremail"
+											value="${viajei.advisor.email}" /> <input type="hidden"
+											name="action" value="2" /><input type="hidden"
+											name="presupuesto" value="${viajei.presupuesto}" />
+									</form></td>
+								<td>
+									<button form="${viajei.id}aceptForm" type="submit"
+										class="btn btn-success">
+										<span class="glyphicon glyphicon-ok"></span>
+									</button>
+									<button form="${viajei.id}denyForm" type="submit"
+										class="btn btn-danger">
+										<span class="glyphicon glyphicon-remove"></span>
+									</button>
+
 								</td>
 							</c:if>
 							<c:if test="${viajei.status != 1}">

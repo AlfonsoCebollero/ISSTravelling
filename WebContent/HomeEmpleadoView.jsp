@@ -29,19 +29,19 @@
 								<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 									class="icon-bar"></span>
 							</button>
-							<b class="navbar-brand">  Empleado
-							</b>
+							<b class="navbar-brand"> Empleado </b>
 						</div>
 						<div class="collapse navbar-collapse" id="myNavbar">
 							<ul class="nav navbar-nav">
 								<li class="active"><a
-									href="/ISST2019/HomeEmpleadoServlet?email=${empleado.email }">Home</a></li>
+									href="/ISST2019/HomeEmpleadoServlet?email=${empleado.email }"><span
+										class="glyphicon glyphicon-home"></span> Home</a></li>
 								<li><a
-									href="/ISST2019/EmpleadoServlet?email=${empleado.email }">Tus
-										Viajes</a></li>
+									href="/ISST2019/EmpleadoServlet?email=${empleado.email }"><span
+										class="glyphicon glyphicon-globe"></span> Tus Viajes</a></li>
 								<li><a
-									href="/ISST2019/ResponsableServlet?email=${empleado.email }">Tus
-										Empleados</a></li>
+									href="/ISST2019/ResponsableServlet?email=${empleado.email }"><span
+										class="glyphicon glyphicon-user"></span> Tus Empleados</a></li>
 							</ul>
 							<ul class="nav navbar-nav navbar-right">
 								<li><a href="LogoutServlet"><span

@@ -35,13 +35,14 @@
 						<div class="collapse navbar-collapse" id="myNavbar">
 							<ul class="nav navbar-nav">
 								<li><a
-									href="/ISST2019/HomeEmpleadoServlet?email=${responsable.email }">Home</a></li>
+									href="/ISST2019/HomeEmpleadoServlet?email=${responsable.email }"><span
+										class="glyphicon glyphicon-home"></span> Home</a></li>
 								<li><a
-									href="/ISST2019/EmpleadoServlet?email=${responsable.email }">Tus
-										Viajes</a></li>
+									href="/ISST2019/EmpleadoServlet?email=${responsable.email }"><span
+										class="glyphicon glyphicon-globe"></span> Tus Viajes</a></li>
 								<li class="active"><a
-									href="/ISST2019/ResponsableServlet?email=${responsable.email }">Tus
-										Empleados</a></li>
+									href="/ISST2019/ResponsableServlet?email=${responsable.email }"><span
+										class="glyphicon glyphicon-user"></span> Tus Empleados</a></li>
 							</ul>
 							<ul class="nav navbar-nav navbar-right">
 								<li><a href="LogoutServlet"><span
@@ -54,22 +55,30 @@
 			<br>
 			<div class="row">
 				<h3 class="text-center">Listado de empleados a su cargo</h3>
-				<table class="table table-hover table-bordered">
-					<tr>
-						<th>Nombre</th>
-						<th>Email</th>
-						<th>Viajes del Empleado</th>
+				<br>
+				<c:choose>
+					<c:when test="${fn:length(empleado_list) > 0}">
+						<table class="table table-hover table-bordered">
+							<tr>
+								<th>Nombre</th>
+								<th>Email</th>
+								<th>Viajes del Empleado</th>
 
-					</tr>
-					<c:forEach items="${empleado_list}" var="empleadoi">
-						<tr class=" warning clickable-row"
-							data-href="/ISST2019/ViajesEmpleadoResponsableServlet?email=${empleadoi.email }">
-							<td>${empleadoi.name }</td>
-							<td>${empleadoi.email }</td>
-							<td>${fn:length(empleadoi.advisedViajes) }</td>
-						</tr>
-					</c:forEach>
-				</table>
+							</tr>
+							<c:forEach items="${empleado_list}" var="empleadoi">
+								<tr class=" clickable-row"
+									data-href="/ISST2019/ViajesEmpleadoResponsableServlet?email=${empleadoi.email }">
+									<td>${empleadoi.name }</td>
+									<td>${empleadoi.email }</td>
+									<td>${fn:length(empleadoi.advisedViajes) }</td>
+								</tr>
+							</c:forEach>
+						</table>
+					</c:when>
+					<c:otherwise>
+						<p class="text-center">No tiene ningún empleado a su cargo</p>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</shiro:hasRole>
 	</div>
