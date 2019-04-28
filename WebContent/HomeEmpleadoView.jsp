@@ -57,17 +57,18 @@
 				<h3 class="text-center">Tu perfil</h3>
 				<br>
 				<div class="col-md-6 col-md-offset-3">
-					<ul class="list-group">
-						<li class="list-group-item">Tu nombre es <b>${ empleado.name}</b></li>
-						<li class="list-group-item">Tu email es <b>${ empleado.email}</b></li>
-						<li class="list-group-item">Tu teléfono es <b>${empleado.telefono}</b></li>
-						<li class="list-group-item">Tienes <b>${fn:length(empleado.advisedViajes) }</b>
-							viajes activos
-						</li>
-						<li class="list-group-item">Tienes <b>${tusempleados }</b>
-							empleados a tu cargo
-						</li>
-					</ul>
+					<dl class="dl-horizontal">
+						<dt>Tu nombre</dt>
+						<dd>${ empleado.name}</dd>
+						<dt>Tu email es</dt>
+						<dd>${ empleado.email}</dd>
+						<dt>Tu teléfono es</dt>
+						<dd>${empleado.telefono}</dd>
+						<dt>Viajes activos</dt>
+						<dd>${fn:length(empleado.advisedViajes) }</dd>
+						<dt>Empleados a tu cargo</dt>
+						<dd>${tusempleados }</dd>
+					</dl>
 				</div>
 			</div>
 		</shiro:hasRole>

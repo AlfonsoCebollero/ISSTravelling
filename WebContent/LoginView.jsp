@@ -14,33 +14,35 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login View</title>
 </head>
-<body>
+<body class="bg">
 	<div class="container">
 		<br>
 		<shiro:guest>
-			<div class="jumbotron text-center">
+			<div class="row text-center mtop">
 				<h1>Gestor de Viajes</h1>
 			</div>
-			<div class="row text-center well">
+			<div class="row text-center mtop2">
 				<form action="LoginServlet" method="post" class="form-inline">
-					<div class="form-group input-group">
+					<div class="form-group input-group shad">
 						<div class="input-group-addon">
 							<b>Email</b>
 						</div>
 						<input type="text" class="form-control" name="email"
 							placeholder="Email" required>
 					</div>
-					<div class="form-group input-group">
+					<div class="form-group input-group shad">
 						<div class="input-group-addon">
 							<b>Password</b>
 						</div>
 						<input type="password" class="form-control" name="password"
 							placeholder="password" required>
 					</div>
-					<button class="btn btn-primary  btn-lg" type="submit">
-						<span class="glyphicon glyphicon-log-in"></span> Log in
-					</button>
-
+					&nbsp;
+					<div class="form-group input-group">
+						<button class="btn btn-primary btn-lg shad" type="submit">
+							<span class="glyphicon glyphicon-log-in"></span> Log in
+						</button>
+					</div>
 				</form>
 			</div>
 		</shiro:guest>
@@ -51,3 +53,37 @@
 	</div>
 </body>
 </html>
+<style>
+.bg {
+	/* The image used */
+	background-image:
+		url("https://s3.amazonaws.com/tinycards/image/84a993ab59004cfea945f8e9ae7f1abe");
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 100%;
+	background-size: cover;
+	position: relative;
+}
+
+.mtop {
+	padding-top: 23%;
+}
+
+.mtop2 {
+	padding-top: 4%;
+}
+
+.shad {
+	box-shadow: 10px 10px 5px grey;
+}
+
+h1 {
+	font-size: 600%;
+	color: white;
+	text-shadow: 0px 2px 7px black;
+}
+
+html, body {
+	height: 100%;
+}
+</style>
