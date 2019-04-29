@@ -56,19 +56,27 @@
 				<br>
 				<h3 class="text-center">Tu perfil</h3>
 				<br>
-				<div class="col-md-6 col-md-offset-3">
-					<dl class="dl-horizontal">
-						<dt>Tu nombre</dt>
-						<dd>${ empleado.name}</dd>
-						<dt>Tu email es</dt>
-						<dd>${ empleado.email}</dd>
-						<dt>Tu teléfono es</dt>
-						<dd>${empleado.telefono}</dd>
-						<dt>Viajes activos</dt>
-						<dd>${fn:length(empleado.advisedViajes) }</dd>
-						<dt>Empleados a tu cargo</dt>
-						<dd>${tusempleados }</dd>
-					</dl>
+				<div class="col-md-4 col-md-offset-4 rounded bg">
+					<div class="row">
+						<img
+							src="https://mobirise.com/bootstrap-template/profile-template/assets/images/timothy-paul-smith-256424-1200x800.jpg"
+							alt="tu foto"  height="100%" width="100%">
+					</div>
+					<div class="row">
+						<br>
+						<dl class="dl-horizontal">
+							<dt>Tu nombre</dt>
+							<dd>${ empleado.name}</dd>
+							<dt>Tu email es</dt>
+							<dd>${ empleado.email}</dd>
+							<dt>Tu teléfono es</dt>
+							<dd>${empleado.telefono}</dd>
+							<dt>Viajes activos</dt>
+							<dd>${fn:length(empleado.advisedViajes) }</dd>
+							<dt>Empleados a tu cargo</dt>
+							<dd>${tusempleados }</dd>
+						</dl>
+					</div>
 				</div>
 			</div>
 		</shiro:hasRole>
@@ -86,3 +94,9 @@
 		crossorigin="anonymous"></script>
 </body>
 </html>
+<style>
+.bg{
+	background-color: #337ab7;
+	border-radius: 25px;
+}
+</style>
