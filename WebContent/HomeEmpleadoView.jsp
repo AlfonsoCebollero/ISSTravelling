@@ -58,12 +58,11 @@
 				<br>
 				<div class="col-md-4 col-md-offset-4 rounded bg">
 					<div class="row">
-						<img
+						<img class="image"
 							src="https://mobirise.com/bootstrap-template/profile-template/assets/images/timothy-paul-smith-256424-1200x800.jpg"
-							alt="tu foto"  height="100%" width="100%">
+							alt="tu foto" height="100%" width="100%">
 					</div>
-					<div class="row">
-						<br>
+					<div class="row bod text-center">
 						<dl class="dl-horizontal">
 							<dt>Tu nombre</dt>
 							<dd>${ empleado.name}</dd>
@@ -95,8 +94,18 @@
 </body>
 </html>
 <style>
-.bg{
-	background-color: #337ab7;
-	border-radius: 25px;
+.bg {
+	background-color: #99ebff;
+	border-radius: 8px;
+	box-shadow: 5px 5px 5px grey;
+}
+
+.image {
+	border-radius: 8px 8px 0px 0px;
+}
+
+.bod{
+	padding: 5%;
+	color: black;
 }
 </style>
