@@ -39,20 +39,22 @@ public class EmpleadoViajeServlet extends HttpServlet {
 		int Aceptadas = 0;
 		int Rechazadas = 0;
 		int cantidad = facturas.size();
-		for (Factura factura : facturas) {
-			if(factura.getEstado()==2) {
-				Rechazadas++;
-			}else if(factura.getEstado()==4) {
-				Aceptadas++;
+		if (cantidad != 0) {
+			for (Factura factura : facturas) {
+				if (factura.getEstado() == 2) {
+					Rechazadas++;
+				} else if (factura.getEstado() == 4) {
+					Aceptadas++;
+				}
+				total += factura.getCargo();
 			}
-			total += factura.getCargo();
+			req.getSession().setAttribute("porcentajeAceptado", (int) Aceptadas * 100 / cantidad);
+			req.getSession().setAttribute("porcentajeRechazado", (int) Rechazadas * 100 / cantidad);
+			req.getSession().setAttribute("porcentajeSolicitado",
+					100 - (int) Aceptadas * 100 / cantidad - (int) Rechazadas * 100 / cantidad);
+			total = (float) (Math.floor(total * 100) / 100);
+			req.getSession().setAttribute("total", total);
 		}
-		req.getSession().setAttribute("porcentajeAceptado", (int)Aceptadas*100/cantidad);
-		req.getSession().setAttribute("porcentajeRechazado", (int)Rechazadas*100/cantidad);
-		req.getSession().setAttribute("porcentajeSolicitado", 100-(int)Aceptadas*100/cantidad-(int)Rechazadas*100/cantidad);
-		total = (float) (Math.floor(total * 100) / 100);
-		req.getSession().setAttribute("total", total);
-		
 
 		Subject currentUser = SecurityUtils.getSubject();
 		String emailEmpleado = (String) currentUser.getPrincipal();
