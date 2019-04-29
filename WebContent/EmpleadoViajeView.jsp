@@ -200,10 +200,21 @@
 						</table>
 						<div class="text-center">
 							<p>
+							<form action="Form3EmpleadoServlet" method="post">
 								<button class="btn btn-success" name="reembolso"
 									value="reembolso" type="submit"
 									<c:if test="${viaje.status != 3}">disabled</c:if>>Solicitar
 									reembolso</button>
+								 <input type="hidden"
+									name="id" value="${viaje.id}" /> <input type="hidden"
+									name="advisoremail" value="${viaje.advisor.email}" /> <input
+									type="hidden" name="action" value="4" />
+							</form>
+							<form action="Form3EmpleadoServlet" method="post">
+								<input type="hidden" name="id" value="${viaje.id}" /> <input
+									type="hidden" name="advisoremail"
+									value="${viaje.advisor.email}" /> <input type="hidden"
+									name="action" value="9" />
 
 								<button class="btn btn-success" name="reintegro"
 									value="reintegro" type="button"

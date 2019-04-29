@@ -66,7 +66,7 @@
 }
 
 .mtop {
-	padding-top: 23%;
+	padding-top: 15%;
 }
 
 .mtop2 {
@@ -74,7 +74,7 @@
 }
 
 .shad {
-	box-shadow: 10px 10px 5px grey;
+	box-shadow: 5px 5px 5px grey;
 }
 
 h1 {
