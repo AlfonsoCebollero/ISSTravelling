@@ -73,14 +73,21 @@
 										test="${viaje.status == 9}">En reintegro Responsable</c:if> <c:if
 										test="${viaje.status == 10}">En reintegro Organo</c:if> <c:if
 										test="${viaje.status == 11}">Reintegrado</c:if></b></li>
-							<li>El destino del viaje es <b>${ viaje.destino }</b> en <b>${country}</b></li>
+							<li>El destino del viaje es <b>${ viaje.destino }</b>
+							<c:if test="${peticionHecha}"> en <b>${country}</b>
+								</c:if></li>
 							<li>La fecha de inicio es <b>${ viaje.fecha_inicio }</b> y
 								de vuelta <b>${viaje.fecha_fin}</b></li>
 							<li>El presupuesto del que dispones es de <b>${ viaje.presupuesto }
 									€</b></li>
-							<li>La moneda en <b>${country}</b> es <b>${ currency }</b>
-								con cambio al EUR de <b>${change}</b></li>
-							<li>El tiempo actual en <b>${viaje.destino}</b> es <b>${ weather }</b></li>
+							<c:if test="${peticionHecha}">
+								<li>La moneda en <b>${country}</b> es <b>${ currency }</b>
+									con cambio al EUR de <b>${change}</b></li>
+								<li>El tiempo actual en <b>${viaje.destino}</b> es <b>${ weather }</b></li>
+							</c:if>
+							<c:if test="${!peticionHecha}">
+								<li>No se ha podido consultar información adicional</li>
+							</c:if>
 						</ul>
 					</div>
 				</div>

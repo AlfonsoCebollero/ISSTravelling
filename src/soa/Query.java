@@ -9,14 +9,22 @@ import org.json.JSONObject;
 public class Query {
 
 	public static String[] GetCountryAndWeather(String city) {
+		String cod = "";
+		String pais = "";
+		String weather = "";
+		String infoPais = "";
 		Client client = ClientBuilder.newClient();
-		String infoPais = client.target("http://api.openweathermap.org/data/2.5/weather").queryParam("q", city)
-				.queryParam("APPID", "96af234bd42e33bfdd5c708d26c81523").request().get(String.class);
-		JSONObject arr = new JSONObject(infoPais);
-		String pais = arr.getJSONObject("sys").getString("country");
-		String weather = arr.getJSONArray("weather").getJSONObject(0).getString("description");
+		try {
+			infoPais = client.target("http://api.openweathermap.org/data/2.5/weather").queryParam("q", city)
+					.queryParam("APPID", "96af234bd42e33bfdd5c708d26c81523").request().get(String.class);
+			JSONObject arr = new JSONObject(infoPais);
+			pais = arr.getJSONObject("sys").getString("country");
+			weather = arr.getJSONArray("weather").getJSONObject(0).getString("description");
+		} catch (Exception e) {
+			cod = "404";
+		}
 		client.close();
-		String[] out = { pais, weather };
+		String[] out = { pais, weather, cod };
 		return out;
 	}
 

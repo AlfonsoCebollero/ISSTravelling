@@ -63,12 +63,18 @@ public class EmpleadoViajeServlet extends HttpServlet {
 		req.getSession().setAttribute("empleado", empleado);
 
 		String[] Country = Query.GetCountryAndWeather(viaje.getDestino());
-		String[] info = Query.GetNameAndCurrency(Country[0]);
-		float cambio = Query.GetChange(info[1]);
-		req.getSession().setAttribute("country", info[0]);
-		req.getSession().setAttribute("weather", Country[1]);
-		req.getSession().setAttribute("currency", info[1]);
-		req.getSession().setAttribute("change", cambio);
+		if(Country[2] != "404") {
+			String[] info = Query.GetNameAndCurrency(Country[0]);
+			float cambio = Query.GetChange(info[1]);
+			req.getSession().setAttribute("peticionHecha", true);
+			req.getSession().setAttribute("country", info[0]);
+			req.getSession().setAttribute("weather", Country[1]);
+			req.getSession().setAttribute("currency", info[1]);
+			req.getSession().setAttribute("change", cambio);
+		}else {
+			req.getSession().setAttribute("peticionHecha", false);
+			req.getSession().setAttribute("currency", "EUR");
+		}
 
 		getServletContext().getRequestDispatcher("/EmpleadoViajeView.jsp").forward(req, resp);
 	}
