@@ -21,7 +21,7 @@
 		</shiro:lacksRole>
 		<shiro:hasRole name="admin">
 			<div class="row">
-				<nav class="navbar navbar-default">
+				<nav class="navi navbar navbar-inverse">
 					<div class="container-fluid">
 						<div class="navbar-header">
 							<button type="button" class="navbar-toggle"
@@ -29,7 +29,10 @@
 								<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 									class="icon-bar"></span>
 							</button>
-							<b class="navbar-brand">Administrador</b>
+							<div class="brand col-xs-12">
+								<img src="https://image.flaticon.com/icons/svg/201/201623.svg"
+									alt="" height="36px" width="40px"> Administrador
+							</div>
 						</div>
 						<div class="collapse navbar-collapse" id="myNavbar">
 							<ul class="nav navbar-nav navbar-right">
@@ -130,58 +133,67 @@
 
 				<h3 class="text-center">Listado de Empleados</h3>
 				<table class="table table-striped table-bordered">
-					<tr>
-						<th>Nombre</th>
-						<th>Email</th>
-						<th>Teléfono</th>
-						<th>Viajes</th>
-						<th>Responsable</th>
-					</tr>
-					<c:forEach items="${empleado_list}" var="emp">
+					<thead>
 						<tr>
-							<td>${emp.name }</td>
-							<td>${emp.email }</td>
-							<td>${emp.telefono }</td>
-							<td>${fn:length(emp.advisedViajes) }</td>
-							<td>${emp.advisor2.email }</td>
+							<th>Nombre</th>
+							<th>Email</th>
+							<th>Teléfono</th>
+							<th>Viajes</th>
+							<th>Responsable</th>
 						</tr>
-					</c:forEach>
+					</thead>
+					<tbody>
+						<c:forEach items="${empleado_list}" var="emp">
+							<tr>
+								<td>${emp.name }</td>
+								<td>${emp.email }</td>
+								<td>${emp.telefono }</td>
+								<td>${fn:length(emp.advisedViajes) }</td>
+								<td>${emp.advisor2.email }</td>
+							</tr>
+						</c:forEach>
+					</tbody>
 				</table>
 				<hr>
 				<h3 class="text-center">Listado de Viajes</h3>
 				<table class="table table-hover table-bordered">
-					<tr>
-						<th>Id</th>
-						<th>Destino</th>
-						<th>Fecha de salida</th>
-						<th>Fecha de regreso</th>
-						<th>Presupuesto</th>
-						<th>Estado del viaje</th>
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Destino</th>
+							<th>Fecha de salida</th>
+							<th>Fecha de regreso</th>
+							<th>Presupuesto</th>
+							<th>Estado del viaje</th>
 
-					</tr>
-					<c:forEach items="${viajes_list}" var="viajei">
-						<tr
-							class="<c:if test="${viajei.status > 2}">success </c:if>
-						<c:if test="${viajei.status == 2 }">danger </c:if> "
-							data-href="/ISST2019/EmpleadoViajeServlet?id=${viajei.id }">
-							<td>${viajei.id }</td>
-							<td>${viajei.destino }</td>
-							<td>${viajei.fecha_inicio }</td>
-							<td>${viajei.fecha_fin }</td>
-							<td>${viajei.presupuesto }€</td>
-							<td><c:if test="${viajei.status == 1}">Solicitado</c:if> <c:if
-									test="${viajei.status == 2}">Rechazado</c:if> <c:if
-									test="${viajei.status == 3}">Aprobado</c:if> <c:if
-									test="${viajei.status == 4}">En Reembolso Responsable</c:if> <c:if
-									test="${viajei.status == 5}">En Reembolso Organo</c:if> <c:if
-									test="${viajei.status == 6}">Reembolsado</c:if> <c:if
-									test="${viajei.status == 7}">En curso</c:if> <c:if
-									test="${viajei.status == 8}">Finalizado</c:if> <c:if
-									test="${viajei.status == 9}">En reintegro Responsable</c:if> <c:if
-									test="${viajei.status == 10}">En reintegro Organo</c:if> <c:if
-									test="${viajei.status == 11}">Reintegrado</c:if></td>
 						</tr>
-					</c:forEach>
+					</thead>
+					<tbody>
+						<c:forEach items="${viajes_list}" var="viajei">
+							<tr
+								class="<c:if test="${viajei.status%5 == 0}">clickable-row warning </c:if> 
+								<c:if test="${viajei.status > 2}">success </c:if>
+								<c:if test="${viajei.status == 2 }">danger </c:if>"
+								data-href="/ISST2019/ReintegroReembolsoServlet?id=${viajei.id }">
+								<td>${viajei.id }</td>
+								<td>${viajei.destino }</td>
+								<td>${viajei.fecha_inicio }</td>
+								<td>${viajei.fecha_fin }</td>
+								<td>${viajei.presupuesto }€</td>
+								<td><c:if test="${viajei.status == 1}">Solicitado</c:if> <c:if
+										test="${viajei.status == 2}">Rechazado</c:if> <c:if
+										test="${viajei.status == 3}">Aprobado</c:if> <c:if
+										test="${viajei.status == 4}">En Reembolso Responsable</c:if> <c:if
+										test="${viajei.status == 5}">En Reembolso Organo</c:if> <c:if
+										test="${viajei.status == 6}">Reembolsado</c:if> <c:if
+										test="${viajei.status == 7}">En curso</c:if> <c:if
+										test="${viajei.status == 8}">Finalizado</c:if> <c:if
+										test="${viajei.status == 9}">En reintegro Responsable</c:if> <c:if
+										test="${viajei.status == 10}">En reintegro Organo</c:if> <c:if
+										test="${viajei.status == 11}">Reintegrado</c:if></td>
+							</tr>
+						</c:forEach>
+					</tbody>
 				</table>
 				<hr>
 			</div>
@@ -200,3 +212,32 @@
 		crossorigin="anonymous"></script>
 </body>
 </html>
+<style>
+.clickable-row {
+	cursor: pointer;
+}
+
+.navi {
+	border-radius: 0px 0px 0px 0px;
+	border: 0px;
+}
+
+.brand {
+	margin-top: 0%;
+	margin-bottom: 0%;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	padding-left: 0%;
+	height: 50px;
+	vertical-align: middle;
+	font-size: x-large;
+	color: white;
+}
+</style>
+<script>
+	$(document).ready(function($) {
+		$(".clickable-row").click(function() {
+			window.document.location = $(this).data("href");
+		});
+	});
+</script>

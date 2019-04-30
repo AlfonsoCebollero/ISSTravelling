@@ -21,7 +21,7 @@
 	</shiro:lacksRole>
 		<shiro:hasRole name="empleado">
 			<div class="row">
-				<nav class="navbar navbar-default">
+				<nav class="navi navbar navbar-inverse">
 					<div class="container-fluid">
 						<div class="navbar-header">
 							<button type="button" class="navbar-toggle"
@@ -29,7 +29,10 @@
 								<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 									class="icon-bar"></span>
 							</button>
-							<b class="navbar-brand">Empleado</b>
+							<div class="brand col-xs-12">
+								<img src="https://image.flaticon.com/icons/svg/201/201623.svg"
+									alt="" height="36px" width="40px"> Empleado
+							</div>
 						</div>
 						<div class="collapse navbar-collapse" id="myNavbar">
 							<ul class="nav navbar-nav">
@@ -83,8 +86,8 @@
 				</div>
 				<hr>
 				<c:if test="${viaje.status > 2}">
-					<div class="row text-center">
-						<c:if test="${viaje.status < 9}">
+					<c:if test="${viaje.status < 9}">
+						<div class="row text-center">
 							<h3 class="text-center">Añadir factura</h3>
 							<form action="CreateFacturaServlet" enctype="multipart/form-data"
 								method="post">
@@ -148,85 +151,81 @@
 									</p>
 								</div>
 							</form>
-					</div>
-					<hr>
-				</c:if>
-				<h3 class="text-center">Listado de facturas</h3>
-				<br>
-				<c:choose>
-					<c:when test="${fn:length(facturas_list) > 0}">
-						<div class="progress">
-							<div class="progress-bar progress-bar-success" role="progressbar"
-								style="width: ${porcentajeAceptado}%">${porcentajeAceptado}%
-								Aceptado</div>
-							<div class="progress-bar progress-bar-danger" role="progressbar"
-								style="width: ${porcentajeRechazado}%">${porcentajeRechazado}%
-								Rechazado</div>
-							<div class="progress-bar progress-bar-info" role="progressbar"
-								style="width: ${porcentajeSolicitado}%">${porcentajeSolicitado}%
-								Solicitado</div>
 						</div>
-						<br>
-						<table class="table table-striped table-bordered">
-							<tr>
-								<th>Id</th>
-								<th>Cargo (Total:${total}€)</th>
-								<th>Comprobante</th>
-								<th>Descripción</th>
-								<th>Estado</th>
+						<hr>
+					</c:if>
+					<h3 class="text-center">Listado de facturas</h3>
+					<br>
+					<c:choose>
+						<c:when test="${fn:length(facturas_list) > 0}">
+							<div class="progress">
+								<div class="progress-bar progress-bar-success"
+									role="progressbar" style="width: ${porcentajeAceptado}%">${porcentajeAceptado}%
+									Aceptado</div>
+								<div class="progress-bar progress-bar-danger" role="progressbar"
+									style="width: ${porcentajeRechazado}%">${porcentajeRechazado}%
+									Rechazado</div>
+								<div class="progress-bar progress-bar-info" role="progressbar"
+									style="width: ${porcentajeSolicitado}%">${porcentajeSolicitado}%
+									Solicitado</div>
+							</div>
+							<br>
+							<table class="table table-striped table-bordered">
+								<tr>
+									<th>Id</th>
+									<th>Cargo (Total:${total}€)</th>
+									<th>Comprobante</th>
+									<th>Descripción</th>
+									<th>Estado</th>
 
-							</tr>
-							<c:forEach items="${facturas_list}" var="facturai">
-								<tr <c:if test="${facturai.estado == 4}">class="success"</c:if>
-									<c:if test="${facturai.estado == 2}">class="danger"</c:if>>
-
-									<td>${facturai.id }</td>
-									<td>${facturai.cargo }€</td>
-									<td><form action="DownloadFileServlet">
-											<input type="hidden" name="id" value="${facturai.id}">
-											<button class="btn btn-info" type="submit">
-												<span class="glyphicon glyphicon-cloud-download"></span>
-												Descargar
-											</button>
-										</form></td>
-									<td>${facturai.descripcion }</td>
-									<td><c:if test="${facturai.estado == 1}">Solicitado</c:if>
-										<c:if test="${facturai.estado == 2}">Rechazado</c:if> <c:if
-											test="${facturai.estado == 3}">En proceso</c:if> <c:if
-											test="${facturai.estado == 4}">Aprobado</c:if></td>
 								</tr>
-							</c:forEach>
+								<c:forEach items="${facturas_list}" var="facturai">
+									<tr <c:if test="${facturai.estado == 4}">class="success"</c:if>
+										<c:if test="${facturai.estado == 2}">class="danger"</c:if>>
 
-						</table>
-						<div class="text-center">
-							<p>
-							<form action="Form3EmpleadoServlet" method="post">
-								<button class="btn btn-success" name="reembolso"
-									value="reembolso" type="submit"
+										<td>${facturai.id }</td>
+										<td>${facturai.cargo }€</td>
+										<td><form action="DownloadFileServlet">
+												<input type="hidden" name="id" value="${facturai.id}">
+												<button class="btn btn-info" type="submit">
+													<span class="glyphicon glyphicon-cloud-download"></span>
+													Descargar
+												</button>
+											</form></td>
+										<td>${facturai.descripcion }</td>
+										<td><c:if test="${facturai.estado == 1}">Solicitado</c:if>
+											<c:if test="${facturai.estado == 2}">Rechazado</c:if> <c:if
+												test="${facturai.estado == 3}">En proceso</c:if> <c:if
+												test="${facturai.estado == 4}">Aprobado</c:if></td>
+									</tr>
+								</c:forEach>
+
+							</table>
+							<div class="text-center">
+
+
+								<form id="ReembolsoForm" action="Form3EmpleadoServlet"
+									method="post">
+									<input type="hidden" name="id" value="${viaje.id}" /> <input
+										type="hidden" name="action" value="4" />
+								</form>
+								<form id="ReintegroForm" action="Form3EmpleadoServlet"
+									method="post">
+									<input type="hidden" name="id" value="${viaje.id}" /> <input
+										type="hidden" name="action" value="9" />
+								</form>
+								<button form="ReembolsoForm" type="submit"
+									class="btn btn-success"
 									<c:if test="${viaje.status != 3}">disabled</c:if>>Solicitar
 									reembolso</button>
-								 <input type="hidden"
-									name="id" value="${viaje.id}" /> <input type="hidden"
-									name="advisoremail" value="${viaje.advisor.email}" /> <input
-									type="hidden" name="action" value="4" />
-							</form>
-							<form action="Form3EmpleadoServlet" method="post">
-								<input type="hidden" name="id" value="${viaje.id}" /> <input
-									type="hidden" name="advisoremail"
-									value="${viaje.advisor.email}" /> <input type="hidden"
-									name="action" value="9" />
-
-								<button class="btn btn-success" name="reintegro"
-									value="reintegro" type="button"
-									<c:if test="${viaje.status != 8}">disabled</c:if>>Solicitar
+								<button form="ReintegroForm" class="btn btn-success"
+									type="submit" <c:if test="${viaje.status != 8}">disabled</c:if>>Solicitar
 									reintegro</button>
-							</form>
-							</p>
-					</c:when>
-					<c:otherwise>
-						<p class="text-center">No ha añadido ninguna factura aún</p>
-					</c:otherwise>
-				</c:choose>
+						</c:when>
+						<c:otherwise>
+							<p class="text-center">No ha añadido ninguna factura aún</p>
+						</c:otherwise>
+					</c:choose>
 			</div>
 			</c:if>
 			<br>
@@ -247,3 +246,21 @@
 		crossorigin="anonymous"></script>
 </body>
 </html>
+<style>
+.navi {
+	border-radius: 0px 0px 0px 0px;
+	border: 0px;
+}
+
+.brand {
+	margin-top: 0%;
+	margin-bottom: 0%;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	padding-left: 0%;
+	height: 50px;
+	vertical-align: middle;
+	font-size: x-large;
+	color: white;
+}
+</style>

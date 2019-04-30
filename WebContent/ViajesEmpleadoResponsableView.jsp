@@ -21,7 +21,7 @@
 		</shiro:lacksRole>
 		<shiro:hasRole name="empleado">
 			<div class="row">
-				<nav class="navbar navbar-default">
+				<nav class="navi navbar navbar-inverse">
 					<div class="container-fluid">
 						<div class="navbar-header">
 							<button type="button" class="navbar-toggle"
@@ -29,7 +29,10 @@
 								<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 									class="icon-bar"></span>
 							</button>
-							<b class="navbar-brand">Empleado</b>
+							<div class="brand col-xs-12">
+								<img src="https://image.flaticon.com/icons/svg/201/201623.svg"
+									alt="" height="36px" width="40px"> Empleado
+							</div>
 						</div>
 						<div class="collapse navbar-collapse" id="myNavbar">
 							<ul class="nav navbar-nav">
@@ -54,73 +57,99 @@
 			<br>
 			<div class="row">
 				<h3 class="text-center">Listado de viajes de empleado ${ empleadoName }</h3>
-				<table class="table table-bordered table-hover">
-					<tr>
-						<th>Id</th>
-						<th>Destino</th>
-						<th>Fecha de salida</th>
-						<th>Fecha de regreso</th>
-						<th>Estado del viaje</th>
-						<th>Presupuesto</th>
-						<th>Acción requerida</th>
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Destino</th>
+							<th>Fecha de salida</th>
+							<th>Fecha de regreso</th>
+							<th>Estado del viaje</th>
+							<th>Presupuesto</th>
+							<th>Acción requerida</th>
 
 
-					</tr>
-					<c:forEach items="${viajes_list}" var="viajei">
-						<tr
-							<c:if test="${viajei.status > 2 && viajei.status < 12}">class="success"</c:if>
-							<c:if test="${viajei.status == 2}">class="danger"</c:if>
-							<c:if test="${viajei.status == 1}">class="warning"</c:if>>
-							<td>${viajei.id }</td>
-							<td>${viajei.destino }</td>
-							<td>${viajei.fecha_inicio }</td>
-							<td>${viajei.fecha_fin }</td>
-							<td><c:if test="${viajei.status == 1}">Solicitado</c:if> <c:if
-									test="${viajei.status == 2}">Rechazado</c:if> <c:if
-									test="${viajei.status == 3}">Aprobado</c:if> <c:if
-									test="${viajei.status == 4}">En Reembolso Responsable</c:if> <c:if
-									test="${viajei.status == 5}">En Reembolso Organo</c:if> <c:if
-									test="${viajei.status == 6}">Reembolsado</c:if> <c:if
-									test="${viajei.status == 7}">En curso</c:if> <c:if
-									test="${viajei.status == 8}">Finalizado</c:if> <c:if
-									test="${viajei.status == 9}">En reintegro Responsable</c:if> <c:if
-									test="${viajei.status == 10}">En reintegro Organo</c:if> <c:if
-									test="${viajei.status == 11}">Reintegrado</c:if></td>
-							<c:if test="${viajei.status == 1}">
-								<td><form id="${viajei.id}aceptForm"
-										action="Form2ResponsableServlet" method="post">
-										<input class="form-control" type="number" name="presupuesto"
-											value="${viajei.presupuesto}" /><input type="hidden"
-											name="id" value="${viajei.id}" /> <input type="hidden"
-											name="advisoremail" value="${viajei.advisor.email}" /> <input
-											type="hidden" name="action" value="3" />
-									</form>
-									<form id="${viajei.id}denyForm"
-										action="Form2ResponsableServlet" method="post">
-										<input type="hidden" name="id" value="${viajei.id}" /> <input
-											type="hidden" name="advisoremail"
-											value="${viajei.advisor.email}" /> <input type="hidden"
-											name="action" value="2" /><input type="hidden"
-											name="presupuesto" value="${viajei.presupuesto}" />
-									</form></td>
-								<td>
-									<button form="${viajei.id}aceptForm" type="submit"
-										class="btn btn-success">
-										<span class="glyphicon glyphicon-ok"></span>
-									</button>
-									<button form="${viajei.id}denyForm" type="submit"
-										class="btn btn-danger">
-										<span class="glyphicon glyphicon-remove"></span>
-									</button>
-
-								</td>
-							</c:if>
-							<c:if test="${viajei.status != 1}">
-								<td>${viajei.presupuesto}</td>
-								<td></td>
-							</c:if>
 						</tr>
-					</c:forEach>
+					</thead>
+					<tbody>
+						<c:forEach items="${viajes_list}" var="viajei">
+							<tr
+								<c:if test="${viajei.status == 1 || viajei.status == 4 || viajei.status == 9}">class="warning"</c:if>
+								<c:if test="${viajei.status > 2 && viajei.status < 12}">class="success"</c:if>
+								<c:if test="${viajei.status == 2}">class="danger"</c:if>>
+								<td>${viajei.id }</td>
+								<td>${viajei.destino }</td>
+								<td>${viajei.fecha_inicio }</td>
+								<td>${viajei.fecha_fin }</td>
+								<td><c:if test="${viajei.status == 1}">Solicitado</c:if> <c:if
+										test="${viajei.status == 2}">Rechazado</c:if> <c:if
+										test="${viajei.status == 3}">Aprobado</c:if> <c:if
+										test="${viajei.status == 4}">En Reembolso Responsable</c:if> <c:if
+										test="${viajei.status == 5}">En Reembolso Organo</c:if> <c:if
+										test="${viajei.status == 6}">Reembolsado</c:if> <c:if
+										test="${viajei.status == 7}">En curso</c:if> <c:if
+										test="${viajei.status == 8}">Finalizado</c:if> <c:if
+										test="${viajei.status == 9}">En reintegro Responsable</c:if> <c:if
+										test="${viajei.status == 10}">En reintegro Organo</c:if> <c:if
+										test="${viajei.status == 11}">Reintegrado</c:if></td>
+
+								<c:choose>
+									<c:when test="${viajei.status == 1}">
+										<td><form id="${viajei.id}aceptForm"
+												action="Form2ResponsableServlet" method="post">
+												<input class="form-control" type="number" name="presupuesto"
+													value="${viajei.presupuesto}" /><input type="hidden"
+													name="id" value="${viajei.id}" /> <input type="hidden"
+													name="advisoremail" value="${viajei.advisor.email}" /> <input
+													type="hidden" name="action" value="3" />
+											</form>
+											<form id="${viajei.id}denyForm"
+												action="Form2ResponsableServlet" method="post">
+												<input type="hidden" name="id" value="${viajei.id}" /> <input
+													type="hidden" name="advisoremail"
+													value="${viajei.advisor.email}" /> <input type="hidden"
+													name="action" value="2" /><input type="hidden"
+													name="presupuesto" value="${viajei.presupuesto}" />
+											</form></td>
+
+										<td>
+											<button form="${viajei.id}aceptForm" type="submit"
+												class="btn btn-success">
+												<span class="glyphicon glyphicon-ok"></span>
+											</button>
+											<button form="${viajei.id}denyForm" type="submit"
+												class="btn btn-danger">
+												<span class="glyphicon glyphicon-remove"></span>
+											</button>
+
+										</td>
+									</c:when>
+									<c:when test="${viajei.status == 4 || viajei.status == 9}">
+										<td>${viajei.presupuesto}
+											<form id="${viajei.id}ReintegrarReembolsarForm"
+												action="ReintegroReembolsoServlet" method="get">
+												<input type="hidden" name="id" value="${viajei.id}" />
+											</form>
+										</td>
+										<td><button form="${viajei.id}ReintegrarReembolsarForm"
+												type="submit" class="btn btn-primary">
+												<span class="glyphicon glyphicon-eur"></span>
+												<c:if test="${viajei.status == 4}">
+												Reembolsar
+												</c:if>
+												<c:if test="${viajei.status == 9}">
+												Reintegrar
+												</c:if>
+											</button></td>
+									</c:when>
+									<c:otherwise>
+										<td>${viajei.presupuesto}</td>
+										<td></td>
+									</c:otherwise>
+								</c:choose>
+							</tr>
+						</c:forEach>
+					</tbody>
 				</table>
 			</div>
 		</shiro:hasRole>
@@ -138,3 +167,21 @@
 		crossorigin="anonymous"></script>
 </body>
 </html>
+<style>
+.navi {
+	border-radius: 0px 0px 0px 0px;
+	border: 0px;
+}
+
+.brand {
+	margin-top: 0%;
+	margin-bottom: 0%;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	padding-left: 0%;
+	height: 50px;
+	vertical-align: middle;
+	font-size: x-large;
+	color: white;
+}
+</style>

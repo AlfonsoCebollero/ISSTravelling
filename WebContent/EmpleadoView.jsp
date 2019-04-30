@@ -21,7 +21,7 @@
 	</shiro:lacksRole>
 		<shiro:hasRole name="empleado">
 			<div class="row">
-				<nav class="navbar navbar-default">
+				<nav class="navi navbar navbar-inverse">
 					<div class="container-fluid">
 						<div class="navbar-header">
 							<button type="button" class="navbar-toggle"
@@ -29,7 +29,10 @@
 								<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 									class="icon-bar"></span>
 							</button>
-							<b class="navbar-brand">Empleado</b>
+							<div class="brand col-xs-12">
+								<img src="https://image.flaticon.com/icons/svg/201/201623.svg"
+									alt="" height="36px" width="40px"> Empleado
+							</div>
 						</div>
 						<div class="collapse navbar-collapse" id="myNavbar">
 							<ul class="nav navbar-nav">
@@ -182,6 +185,23 @@
 <style>
 .clickable-row {
 	cursor: pointer;
+}
+
+.navi {
+	border-radius: 0px 0px 0px 0px;
+	border: 0px;
+}
+
+.brand {
+	margin-top: 0%;
+	margin-bottom: 0%;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	padding-left: 0%;
+	height: 50px;
+	vertical-align: middle;
+	font-size: x-large;
+	color: white;
 }
 </style>
 <script>

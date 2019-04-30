@@ -6,6 +6,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon"
+	href="https://image.flaticon.com/icons/svg/201/201623.svg"
+	type="image/svg+xml" />
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
 	integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
@@ -21,7 +24,7 @@
 		</shiro:lacksRole>
 		<shiro:hasRole name="empleado">
 			<div class="row">
-				<nav class="navbar navbar-default">
+				<nav class="navi navbar navbar-inverse">
 					<div class="container-fluid">
 						<div class="navbar-header">
 							<button type="button" class="navbar-toggle"
@@ -29,7 +32,10 @@
 								<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 									class="icon-bar"></span>
 							</button>
-							<b class="navbar-brand"> Empleado </b>
+							<div class="brand col-xs-12">
+								<img src="https://image.flaticon.com/icons/svg/201/201623.svg"
+									alt="" height="36px" width="40px"> Empleado
+							</div>
 						</div>
 						<div class="collapse navbar-collapse" id="myNavbar">
 							<ul class="nav navbar-nav">
@@ -95,17 +101,35 @@
 </html>
 <style>
 .bg {
-	background-color: #99ebff;
+	background-color: #555;
 	border-radius: 8px;
 	box-shadow: 5px 5px 5px grey;
 }
 
+.navi {
+	border-radius: 0px 0px 0px 0px;
+	border: 0px;
+}
+
+.brand {
+	margin-top: 0%;
+	margin-bottom: 0%;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	padding-left: 0%;
+	height: 50px;
+	vertical-align: middle;
+	font-size: x-large;
+	color: white;
+}
+
 .image {
+	margin: 0%;
 	border-radius: 8px 8px 0px 0px;
 }
 
-.bod{
+.bod {
 	padding: 5%;
-	color: black;
+	color: white;
 }
 </style>
