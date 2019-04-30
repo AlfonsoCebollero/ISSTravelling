@@ -60,29 +60,29 @@
 			<br>
 			<div class="row ">
 				<br>
-				<h3 class="text-center">Tu perfil</h3>
-				<br>
-				<div class="col-md-4 col-md-offset-4 rounded bg">
-					<div class="row">
-						<img class="image"
-							src="https://mobirise.com/bootstrap-template/profile-template/assets/images/timothy-paul-smith-256424-1200x800.jpg"
-							alt="tu foto" height="100%" width="100%">
+				<h2 class="text-center tit">
+					Tu perfil
+					</h3>
+					<br>
+					<div id="perfil" class="col-md-4 col-md-offset-4 rounded bg">
+						<div class="row">
+							<img id="change-image" class="image"
+								src="https://mobirise.com/bootstrap-template/profile-template/assets/images/timothy-paul-smith-256424-1200x800.jpg"
+								alt="tu foto" height="100%" width="100%">
+						</div>
+						<div class="row bod">
+							<dl class="dl-horizontal">
+								<dt>Descripción</dt>
+								<dd>Tu nombre es ${ empleado.name}, tu cuenta de correo
+									electrónico es ${ empleado.email} y tu número de teléfono es
+									${empleado.telefono}.</dd>
+								<dt>Viajes activos</dt>
+								<dd>${fn:length(empleado.advisedViajes) } viajes.</dd>
+								<dt>Empleados a tu cargo</dt>
+								<dd>${tusempleados } empleados.</dd>
+							</dl>
+						</div>
 					</div>
-					<div class="row bod text-center">
-						<dl class="dl-horizontal">
-							<dt>Tu nombre</dt>
-							<dd>${ empleado.name}</dd>
-							<dt>Tu email es</dt>
-							<dd>${ empleado.email}</dd>
-							<dt>Tu teléfono es</dt>
-							<dd>${empleado.telefono}</dd>
-							<dt>Viajes activos</dt>
-							<dd>${fn:length(empleado.advisedViajes) }</dd>
-							<dt>Empleados a tu cargo</dt>
-							<dd>${tusempleados }</dd>
-						</dl>
-					</div>
-				</div>
 			</div>
 		</shiro:hasRole>
 	</div>
@@ -101,7 +101,7 @@
 </html>
 <style>
 .bg {
-	background-color: #555;
+	background-color: #000;
 	border-radius: 8px;
 	box-shadow: 5px 5px 5px grey;
 }
@@ -126,10 +126,31 @@
 .image {
 	margin: 0%;
 	border-radius: 8px 8px 0px 0px;
+	cursor: pointer;
 }
 
 .bod {
 	padding: 5%;
 	color: white;
 }
+
+.tit {
+	font-size: 300%;
+	text-shadow: 0px 0px 0px black;
+}
 </style>
+<script>
+	$("#perfil")
+			.hover(
+					function() {
+						$('#change-image').attr('src','https://image.flaticon.com/icons/svg/660/660756.svg');
+						$('#change-image').attr('height','200px');
+						$('#change-image').css('margin-top', '10%');
+						$('#change-image').css('margin-bottom', '5%');
+					},
+					function() {
+						$('#change-image').attr('src','https://mobirise.com/bootstrap-template/profile-template/assets/images/timothy-paul-smith-256424-1200x800.jpg');
+						$('#change-image').attr('height','100%');
+						$('#change-image').css('margin', '0%');
+					});
+</script>
