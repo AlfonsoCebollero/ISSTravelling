@@ -12,6 +12,7 @@ import org.apache.shiro.subject.Subject;
 
 import dao.ViajeDAO;
 import dao.ViajeDAOImplementation;
+import mail.EmailHandler;
 import model.Viaje;
 
 /**
@@ -31,13 +32,21 @@ public class Form3EmpleadoServlet extends HttpServlet {
 			viaje.setStatus(action);
 			vdao.update(viaje);
 		}
-
+		EmailHandler emailhandler = EmailHandler.getInstance();
+		Subject currentUser = SecurityUtils.getSubject();
+		String emailEmpleado = (String) currentUser.getPrincipal();
+		
 		if (action == 4 || action == 9) {
-			Subject currentUser = SecurityUtils.getSubject();
-			String emailEmpleado = (String) currentUser.getPrincipal();
+			
+	
+			emailhandler.sendEmail(emailEmpleado,"Cambio de estado de su viaje","Su viaje con id " + id + " ha cambiado de estado.");
+
 			resp.sendRedirect(req.getContextPath() + "/EmpleadoViajeServlet?email=" + emailEmpleado + "&id=" + id);
 		}
 		else if (action == 5 || action == 10) {
+
+			emailhandler.sendEmail(emailEmpleado,"Cambio de estado de su viaje","Su viaje con id " + id + " ha cambiado de estado.");
+			
 			resp.sendRedirect(req.getContextPath() + "/ViajesEmpleadoResponsableServlet?email=" + viaje.getAdvisor().getEmail());
 		}else {
 			resp.sendRedirect(req.getContextPath() + "/AdminServlet");

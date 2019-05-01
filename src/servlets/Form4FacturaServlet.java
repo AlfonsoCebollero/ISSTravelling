@@ -14,6 +14,7 @@ import dao.FacturaDAO;
 import dao.FacturaDAOImplementation;
 import dao.ViajeDAO;
 import dao.ViajeDAOImplementation;
+import mail.EmailHandler;
 import model.Factura;
 import model.Viaje;
 
@@ -39,6 +40,11 @@ public class Form4FacturaServlet extends HttpServlet {
 		}
 		factura.setEstado(2 + action);
 		fdao.update(factura);
+		
+		EmailHandler emailhandler = EmailHandler.getInstance();
+		emailhandler.sendEmail(viaje.getAdvisor().getEmail(),"Actualizacion de factura","La factura del viaje con id " + viajeId + " ha sido actualizada.");
+
+
 		
 		resp.sendRedirect(req.getContextPath() + "/ReintegroReembolsoServlet?id=" + viajeId);
 	}

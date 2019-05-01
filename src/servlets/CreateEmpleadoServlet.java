@@ -12,6 +12,7 @@ import org.apache.shiro.crypto.hash.Sha256Hash;
 import dao.EmpleadoDAO;
 import dao.EmpleadoDAOImplementation;
 import model.Empleado;
+import mail.EmailHandler;
 
 /**
  * Servlet implementation class CreateEmpleadoServlet
@@ -33,6 +34,9 @@ public class CreateEmpleadoServlet extends HttpServlet {
 		empleado.setTelefono(telefono);
 		empleado.setAdvisor2(responsable);
 		empleado.setPassword(new Sha256Hash(password).toString());
+		
+		EmailHandler emailhandler = EmailHandler.getInstance();
+		emailhandler.sendEmail(email,"Alta de empleado","Se le ha dado de alta como empleado en la plataforma.");
 
 		edao.create(empleado);
 

@@ -16,6 +16,7 @@ import dao.FacturaDAO;
 import dao.FacturaDAOImplementation;
 import dao.ViajeDAO;
 import dao.ViajeDAOImplementation;
+import mail.EmailHandler;
 import model.Factura;
 import model.Viaje;
 
@@ -45,15 +46,20 @@ public class CreateFacturaServlet extends HttpServlet {
 		
 		ViajeDAO vdao = ViajeDAOImplementation.getInstance();
 		Viaje viaje = vdao.read(Integer.parseInt(advisor4));
+		
 		Factura factura = new Factura();
 		factura.setComprobante(output.toByteArray());
 		factura.setCargo(cargo);
 		factura.setDescripcion(descripcion);
 		factura.setAdvisor4(viaje);
 		factura.setEstado(1);
+		
+		EmailHandler emailhandler = EmailHandler.getInstance();
+		emailhandler.sendEmail(viaje.getAdvisor().getEmail(),"Subida de factura","Se ha subido una factura relacionada al viaje con id "+advisor4);
 
 		FacturaDAO fdao = FacturaDAOImplementation.getInstance();
 		fdao.create(factura);
+		
 
 		resp.sendRedirect(req.getContextPath() + "/EmpleadoViajeServlet?id="+Integer.parseInt(advisor4));
 	}

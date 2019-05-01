@@ -12,6 +12,7 @@ import org.apache.shiro.subject.Subject;
 
 import dao.ViajeDAO;
 import dao.ViajeDAOImplementation;
+import mail.EmailHandler;
 import model.Viaje;
 
 
@@ -33,6 +34,8 @@ public class Form2ResponsableServlet extends HttpServlet {
 		viaje.setStatus(Integer.parseInt(action));
 		vdao.update(viaje);
 		
+		EmailHandler emailhandler = EmailHandler.getInstance();
+		emailhandler.sendEmail(email,"Viaje aceptado","Se le ha aceptado un viaje con id " + id + " y un presupuesto de " + presupuesto);
 		resp.sendRedirect( req.getContextPath() + "/ViajesEmpleadoResponsableServlet?email=" + email  );
 	}
 
