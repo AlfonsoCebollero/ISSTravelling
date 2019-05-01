@@ -73,8 +73,8 @@
 										test="${viaje.status == 9}">En reintegro Responsable</c:if> <c:if
 										test="${viaje.status == 10}">En reintegro Organo</c:if> <c:if
 										test="${viaje.status == 11}">Reintegrado</c:if></b></li>
-							<li>El destino del viaje es <b>${ viaje.destino }</b>
-							<c:if test="${peticionHecha}"> en <b>${country}</b>
+							<li>El destino del viaje es <b>${ viaje.destino }</b> <c:if
+									test="${peticionHecha}"> en <b>${country}</b>
 								</c:if></li>
 							<li>La fecha de inicio es <b>${ viaje.fecha_inicio }</b> y
 								de vuelta <b>${viaje.fecha_fin}</b></li>
@@ -223,7 +223,7 @@
 								</form>
 								<button form="ReembolsoForm" type="submit"
 									class="btn btn-success"
-									<c:if test="${viaje.status != 3}">disabled</c:if>>Solicitar
+									<c:if test="${viaje.status != 3 || total <= viaje.presupuesto*0.5}">disabled</c:if>>Solicitar
 									reembolso</button>
 								<button form="ReintegroForm" class="btn btn-success"
 									type="submit" <c:if test="${viaje.status != 8}">disabled</c:if>>Solicitar

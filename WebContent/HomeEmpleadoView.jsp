@@ -73,16 +73,83 @@
 						<div class="row bod">
 							<dl class="dl-horizontal">
 								<dt>Descripción</dt>
-								<dd>Tu nombre es ${ empleado.name}, tu cuenta de correo
-									electrónico es ${ empleado.email} y tu número de teléfono es
-									${empleado.telefono}.</dd>
+								<dd>
+									Tu nombre es <u>${ empleado.name}</u>, tu cuenta de correo
+									electrónico es <u>${ empleado.email}</u> y tu número de
+									teléfono es <u>${empleado.telefono}</u>.
+								</dd>
 								<dt>Viajes activos</dt>
 								<dd>${fn:length(empleado.advisedViajes) } viajes.</dd>
 								<dt>Empleados a tu cargo</dt>
-								<dd>${tusempleados } empleados.</dd>
+								<dd>${tusempleados} empleados.</dd>
 							</dl>
 						</div>
 					</div>
+			</div>
+			<div id="edit" class="hide row text-center">
+				<h3 class="text-center">Editar perfil</h3>
+				<form action="UpdateEmpleadoServlet" method="post">
+					<div class="form-group">
+						<p>
+						<div class="row center-block">
+							<div class="col-md-6 col-md-offset-3">
+								<div class="input-group">
+									<div class="input-group-addon">
+										<b>Nombre</b>
+									</div>
+									<input class="form-control" type="text" name="name"
+										placeholder="Tu nuevo nombre" value="" />
+								</div>
+							</div>
+						</div>
+						</p>
+						<p>
+						<div class="row center-block">
+							<div class="col-md-6 col-md-offset-3">
+
+								<div class="input-group">
+									<div class="input-group-addon">
+										<b>Foto</b>
+									</div>
+									<input type="file" class="form-control" name="foto">
+								</div>
+							</div>
+						</div>
+						</p>
+						<p>
+						<div class="row center-block">
+							<div class="col-md-6 col-md-offset-3">
+								<div class="input-group">
+									<div class="input-group-addon">
+										<b>Telefono</b>
+									</div>
+									<input class="form-control" type="tel" name="telefono"
+										placeholder="Tu nuevo teléfono" value="" />
+								</div>
+							</div>
+						</div>
+						</p>
+						<p>
+						<div class="row center-block">
+							<div class="col-md-6 col-md-offset-3">
+								<div class="input-group">
+									<div class="input-group-addon">
+										<b>Password</b>
+									</div>
+									<input class="form-control" type="password" name="password"
+										placeholder="Tu nueva contraseña" value="" />
+								</div>
+							</div>
+						</div>
+						</p>
+						<p>
+							<button class="btn btn-success text-center" type="submit">
+								<span class="glyphicon glyphicon-pencil"></span> Actualizar
+								perfil
+							</button>
+						</p>
+					</div>
+				</form>
 			</div>
 		</shiro:hasRole>
 	</div>
@@ -138,19 +205,31 @@
 	font-size: 300%;
 	text-shadow: 0px 0px 0px black;
 }
+
+.hide {
+	display: none;
+}
 </style>
 <script>
 	$("#perfil")
 			.hover(
 					function() {
-						$('#change-image').attr('src','https://image.flaticon.com/icons/svg/660/660756.svg');
-						$('#change-image').attr('height','200px');
+						$('#change-image')
+								.attr('src',
+										'https://image.flaticon.com/icons/svg/660/660756.svg');
+						$('#change-image').attr('height', '200px');
 						$('#change-image').css('margin-top', '10%');
 						$('#change-image').css('margin-bottom', '5%');
 					},
 					function() {
-						$('#change-image').attr('src','https://mobirise.com/bootstrap-template/profile-template/assets/images/timothy-paul-smith-256424-1200x800.jpg');
-						$('#change-image').attr('height','100%');
+						$('#change-image')
+								.attr(
+										'src',
+										'https://mobirise.com/bootstrap-template/profile-template/assets/images/timothy-paul-smith-256424-1200x800.jpg');
+						$('#change-image').attr('height', '100%');
 						$('#change-image').css('margin', '0%');
 					});
+	$("#perfil").click(function() {
+		$("#edit").removeClass('hide');
+	});
 </script>
