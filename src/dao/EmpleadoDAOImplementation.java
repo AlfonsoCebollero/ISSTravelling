@@ -10,7 +10,7 @@ public class EmpleadoDAOImplementation implements EmpleadoDAO{
 
 	private static EmpleadoDAOImplementation instance = null;
 
-	private EmpleadoDAOImplementation() {
+	public EmpleadoDAOImplementation() {
 	}
 
 	public static EmpleadoDAOImplementation getInstance() {
