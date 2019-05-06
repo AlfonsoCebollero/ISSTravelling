@@ -61,10 +61,10 @@ public class CreateViajeServlet extends HttpServlet {
 
 			ViajeDAO vdao = ViajeDAOImplementation.getInstance();
 			vdao.create(viaje);
+			EmailHandler emailhandler = EmailHandler.getInstance();
+			emailhandler.sendEmail(emailAdvisor,"Creacion de viaje","Ha solicitado exitosamente un viaje con id " +viaje.getId() + " y destino a " + viaje.getDestino() +".");
 		}
 
-		EmailHandler emailhandler = EmailHandler.getInstance();
-		emailhandler.sendEmail(emailAdvisor,"Creacion de viaje","Ha solicitado exitosamente un viaje.");
 		
 		resp.sendRedirect(req.getContextPath() + "/EmpleadoServlet?email=" + emailAdvisor);
 

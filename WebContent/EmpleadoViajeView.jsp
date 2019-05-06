@@ -228,6 +228,15 @@
 								<button form="ReintegroForm" class="btn btn-success"
 									type="submit" <c:if test="${viaje.status != 8}">disabled</c:if>>Solicitar
 									reintegro</button>
+
+								<p>
+									<br> <span class="glyphicon glyphicon-info-sign"></span>
+									Solicitar el reembolso solo será posible antes de que el viaje
+									comience y las facturas hayan superado el 50% del presupuesto,
+									es decir, ${viaje.presupuesto*0.5 } €. Solicitar el reintegro
+									solo será posible cuando el viaje sea finalizado.
+								</p>
+							</div>
 						</c:when>
 						<c:otherwise>
 							<p class="text-center">No ha añadido ninguna factura aún</p>

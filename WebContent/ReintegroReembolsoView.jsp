@@ -31,7 +31,8 @@
 							</button>
 							<div class="brand col-xs-12">
 								<img src="https://image.flaticon.com/icons/svg/201/201623.svg"
-									alt="" height="36px" width="40px"> <shiro:hasRole name="empleado">Empleado</shiro:hasRole>
+									alt="" height="36px" width="40px">
+								<shiro:hasRole name="empleado">Empleado</shiro:hasRole>
 								<shiro:hasRole name="admin">Administrador</shiro:hasRole>
 							</div>
 						</div>
@@ -150,6 +151,12 @@
 									reintegro</c:if>
 								</button>
 							</form>
+							<p>
+								<br> <span class="glyphicon glyphicon-info-sign"></span>
+								Para finalizar el <c:if test="${viaje.status < 7}">reembolso</c:if>
+									<c:if test="${viaje.status > 7}">reintegro</c:if> es necesario que todas las facturas hayan sido cambiadas de estado.
+							</p>
+						</div>
 					</c:when>
 					<c:otherwise>
 						<p class="text-center">No ha añadido ninguna factura aún</p>

@@ -27,28 +27,23 @@ public class Form3EmpleadoServlet extends HttpServlet {
 
 		ViajeDAO vdao = ViajeDAOImplementation.getInstance();
 		Viaje viaje = vdao.read(Integer.parseInt(id));
-		
+
 		if (action == viaje.getStatus() + 1) {
+			EmailHandler emailhandler = EmailHandler.getInstance();
+			emailhandler.sendEmail(viaje.getAdvisor().getEmail(), "Cambio de estado de su viaje",
+					"Su viaje con id " + id + " ha cambiado de estado.");
 			viaje.setStatus(action);
 			vdao.update(viaje);
 		}
-		EmailHandler emailhandler = EmailHandler.getInstance();
 		Subject currentUser = SecurityUtils.getSubject();
 		String emailEmpleado = (String) currentUser.getPrincipal();
-		
+
 		if (action == 4 || action == 9) {
-			
-	
-			emailhandler.sendEmail(emailEmpleado,"Cambio de estado de su viaje","Su viaje con id " + id + " ha cambiado de estado.");
-
 			resp.sendRedirect(req.getContextPath() + "/EmpleadoViajeServlet?email=" + emailEmpleado + "&id=" + id);
-		}
-		else if (action == 5 || action == 10) {
-
-			emailhandler.sendEmail(emailEmpleado,"Cambio de estado de su viaje","Su viaje con id " + id + " ha cambiado de estado.");
-			
-			resp.sendRedirect(req.getContextPath() + "/ViajesEmpleadoResponsableServlet?email=" + viaje.getAdvisor().getEmail());
-		}else {
+		} else if (action == 5 || action == 10) {
+			resp.sendRedirect(
+					req.getContextPath() + "/ViajesEmpleadoResponsableServlet?email=" + viaje.getAdvisor().getEmail());
+		} else {
 			resp.sendRedirect(req.getContextPath() + "/AdminServlet");
 		}
 	}

@@ -31,21 +31,20 @@ public class Form4FacturaServlet extends HttpServlet {
 
 		FacturaDAO fdao = FacturaDAOImplementation.getInstance();
 		Factura factura = fdao.read(Integer.parseInt(id));
-		
+
 		ViajeDAO vdao = ViajeDAOImplementation.getInstance();
 		Viaje viaje = vdao.read(Integer.parseInt(viajeId));
 
-		if (viaje.getStatus()%5 == 0 && action != 0) {
+		if (viaje.getStatus() % 5 == 0 && action != 0) {
 			action++;
 		}
 		factura.setEstado(2 + action);
 		fdao.update(factura);
-		
+
 		EmailHandler emailhandler = EmailHandler.getInstance();
-		emailhandler.sendEmail(viaje.getAdvisor().getEmail(),"Actualizacion de factura","La factura del viaje con id " + viajeId + " ha sido actualizada.");
+		emailhandler.sendEmail(viaje.getAdvisor().getEmail(), "Actualizacion de factura",
+				"La factura del viaje con id " + viajeId + " ha cambiado de estado.");
 
-
-		
 		resp.sendRedirect(req.getContextPath() + "/ReintegroReembolsoServlet?id=" + viajeId);
 	}
 

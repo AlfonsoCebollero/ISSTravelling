@@ -55,7 +55,7 @@ public class CreateFacturaServlet extends HttpServlet {
 		factura.setEstado(1);
 		
 		EmailHandler emailhandler = EmailHandler.getInstance();
-		emailhandler.sendEmail(viaje.getAdvisor().getEmail(),"Subida de factura","Se ha subido una factura relacionada al viaje con id "+advisor4);
+		emailhandler.sendEmail(viaje.getAdvisor().getEmail(),"Subida de factura","Se ha subido una factura relacionada al viaje con id "+advisor4+".");
 
 		FacturaDAO fdao = FacturaDAOImplementation.getInstance();
 		fdao.create(factura);
