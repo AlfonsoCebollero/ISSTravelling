@@ -36,8 +36,8 @@ public class Form2ResponsableServlet extends HttpServlet {
 
 			String estado = viaje.getStatus() == 2 ? "rechazado" : "aceptado";
 			EmailHandler emailhandler = EmailHandler.getInstance();
-			emailhandler.sendEmail(email, "Viaje " + estado, "Se le ha " + estado + "un viaje con id " + id
-					+ " y un presupuesto de " + presupuesto + " con destino a " + viaje.getDestino() + ".");
+			emailhandler.sendEmail(email, "Viaje " + estado, "Se le ha " + estado + " un viaje con id " + id
+					+ " y un presupuesto de " + presupuesto + "€ con destino a " + viaje.getDestino() + ".");
 		}
 		resp.sendRedirect(req.getContextPath() + "/ViajesEmpleadoResponsableServlet?email=" + email);
 	}

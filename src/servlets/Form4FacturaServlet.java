@@ -40,10 +40,10 @@ public class Form4FacturaServlet extends HttpServlet {
 		}
 		factura.setEstado(2 + action);
 		fdao.update(factura);
-
-		EmailHandler emailhandler = EmailHandler.getInstance();
-		emailhandler.sendEmail(viaje.getAdvisor().getEmail(), "Actualizacion de factura",
-				"La factura del viaje con id " + viajeId + " ha cambiado de estado.");
+//
+//		EmailHandler emailhandler = EmailHandler.getInstance();
+//		emailhandler.sendEmail(viaje.getAdvisor().getEmail(), "Actualizacion de factura",
+//				"La factura del viaje con id " + viajeId + " ha cambiado de estado.");
 
 		resp.sendRedirect(req.getContextPath() + "/ReintegroReembolsoServlet?id=" + viajeId);
 	}

@@ -161,6 +161,10 @@
 								</tr>
 							</c:forEach>
 						</table>
+						<p>
+							<br> <span class="glyphicon glyphicon-info-sign"></span>
+							Pincha sobre un viaje para ver información detallada de este.
+						</p>
 					</c:when>
 					<c:otherwise>
 						<p class="text-center">Aún no ha solicitado ningún viaje</p>

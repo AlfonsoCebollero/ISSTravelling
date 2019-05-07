@@ -195,6 +195,11 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				<p class="text-left">
+					<br> <span class="glyphicon glyphicon-info-sign"></span> Para
+					proceder con el reembolso o reintegro pincha en el correspondiente
+					viaje.
+				</p>
 				<hr>
 			</div>
 		</shiro:hasRole>

@@ -229,7 +229,7 @@
 									type="submit" <c:if test="${viaje.status != 8}">disabled</c:if>>Solicitar
 									reintegro</button>
 
-								<p>
+								<p class="text-left">
 									<br> <span class="glyphicon glyphicon-info-sign"></span>
 									Solicitar el reembolso solo será posible antes de que el viaje
 									comience y las facturas hayan superado el 50% del presupuesto,

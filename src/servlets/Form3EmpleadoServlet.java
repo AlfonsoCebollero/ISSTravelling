@@ -28,8 +28,8 @@ public class Form3EmpleadoServlet extends HttpServlet {
 		ViajeDAO vdao = ViajeDAOImplementation.getInstance();
 		Viaje viaje = vdao.read(Integer.parseInt(id));
 
+		EmailHandler emailhandler = EmailHandler.getInstance();
 		if (action == viaje.getStatus() + 1) {
-			EmailHandler emailhandler = EmailHandler.getInstance();
 			emailhandler.sendEmail(viaje.getAdvisor().getEmail(), "Cambio de estado de su viaje",
 					"Su viaje con id " + id + " ha cambiado de estado.");
 			viaje.setStatus(action);
@@ -39,6 +39,17 @@ public class Form3EmpleadoServlet extends HttpServlet {
 		String emailEmpleado = (String) currentUser.getPrincipal();
 
 		if (action == 4 || action == 9) {
+			if (action == 4) {
+				emailhandler.sendEmail(viaje.getAdvisor().getAdvisor2().getEmail(), "Solicitud de reembolso viaje",
+						"Su empleado con email " + viaje.getAdvisor().getEmail()
+								+ " ha solicito del reembolso del viaje con id " + id
+								+ ", reembolsalo lo antes posible.");
+			} else {
+				emailhandler.sendEmail(viaje.getAdvisor().getAdvisor2().getEmail(), "Solicitud de reintegro viaje",
+						"Su empleado con email " + viaje.getAdvisor().getEmail()
+								+ " ha solicito del reintegro del viaje con id " + id
+								+ ", reintegralo lo antes posible.");
+			}
 			resp.sendRedirect(req.getContextPath() + "/EmpleadoViajeServlet?email=" + emailEmpleado + "&id=" + id);
 		} else if (action == 5 || action == 10) {
 			resp.sendRedirect(

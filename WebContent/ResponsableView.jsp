@@ -81,6 +81,11 @@
 								</c:forEach>
 							</tbody>
 						</table>
+						<p>
+							<br> <span class="glyphicon glyphicon-info-sign"></span>
+							Pincha sobre un empleado para ver información detallada de sus
+							viajes activos.
+						</p>
 					</c:when>
 					<c:otherwise>
 						<p class="text-center">No tiene ningún empleado a su cargo</p>
